@@ -42,3 +42,8 @@ Vue.component('child', {
   template: '<div><span>{{ message1 }}</span>,  <span v-if="message2">YES 2!</span><span v-else></span><span>{{ message3 }}</span><span>{{ messageFour }}</span></div>'
 })
 ```
+针对父组件传入的四个值，在此一一分析：
+1. this.message1 接收到字符串 `'Hello!'`。
+2. this.message2 接收到布尔类型 `true`。
+3. this.message3 接收到父组件的 `value`，与父组件完全一致。（甚至于你可以直接修改这个 `value` 来影响父组件，但**非常不推荐**这么做）
+4. this.messageFour 接收到的是 `message-four` 传入的值，因为当使用的不是字符串模版，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名，这种类型在子组件接收时需要注意。
