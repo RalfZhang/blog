@@ -1,7 +1,6 @@
 ---
-title: vue-parent-child-communication
+title: 浅谈 Vue 父子组件中的通讯————事件与值的传递 1/2
 date: 2017-04-18 00:51:11
 tags:
 - Vue
-- JavaScript
 ---
