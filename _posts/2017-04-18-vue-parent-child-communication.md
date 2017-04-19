@@ -13,7 +13,7 @@ tags:
 
 ----
 
-## 值的传递
+## 1. 值的传递
 
 
 在 Vue 中父组件向子组件传值非常简单，只要通过 `prop` 即可。
@@ -55,7 +55,7 @@ Vue.component('child', {
 
 ----
 
-## 事件的触发  
+## 2. 事件的触发  
 
 正如文章开头的图片所示，在 Vue.js 中，父子组件的关系可以总结为 props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。那么，我们如何做到父组件触发子组件的 events 呢？
 
@@ -89,6 +89,11 @@ Vue.component('child', {
 
 ----
 
-## More  
+## 3. More  
 
 对于稍微大的项目，[Vuex](https://vuex.vuejs.org/zh-cn/intro.html) 可能才是最好的选择方案
+
+
+## 4. 参考  
+https://cn.vuejs.org/v2/guide/components.html  
+http://www.cnblogs.com/QRL909109/p/6166209.html
