@@ -41,11 +41,10 @@ tags:
 针对上一节传入的四个值，子组件只需要显式地用 `props` 选项声明它期待获得的数据：
 ```js
 Vue.component('child', {
-  // 声明 props
   props: ['message1', 'message2', 'message3', 'messageFour'],
   // 就像 data 一样，prop 可以用在模板内
   // 同样也可以在 vm 实例中像 “this.message1” 这样使用
-  template: '<div><span>{{ message1 }}</span>,  <span v-if="message2">YES 2!</span><span v-else></span><span>{{ message3 }}</span><span>{{ messageFour }}</span></div>'
+  template: '#child'
 })
 ```
 针对父组件传入的四个值，在此一一分析：
@@ -63,16 +62,30 @@ Vue.component('child', {
 ### Hack 方法（不推荐）  
 
 父组件将一个空对象通过 prop 传入子组件，子组件 watch 这个 prop。每次父组件给此属性重新复制新对象时候即可触发子组件的 watch。
-这里有一个例子，点击父组件的按钮，子组件执行 add 的方法
-
+这里有一个例子，点击父组件的按钮，子组件执行 add 的方法。
 
 [请看此例](https://codepen.io/RalfZ/pen/KmVgxB)
 
 ### 正常方法
 
-比较推荐的做法是父组件通过在子组件放置 `ref='xxx'` 来通过 `this.$refs.xxx` 获取到子组件的实例，这里的实例相当于子组件内部的 `this`，这样就可以直接调用子组件内部的方法了。
+比较推荐的做法是父组件通过在子组件放置 `ref='xxx'` 来标记子组件。
+```HTML
+<child ref='ch'></child>
+```
+
+通过 `this.$refs.xxx` 获取到子组件的实例，这里的实例相当于子组件内部的 `this`，这样就可以直接调用子组件内部的方法了。
+```js
+  methods: {
+    update(){
+      this.$refs.ch.add()
+    }
+  }
+```
+
 
 [请看此例](https://codepen.io/RalfZ/pen/NjxbWz)
+
+我们明显可以看到，用这个方法比起 Hack 方法，代码量少了很多，逻辑也非常简单。
 
 ----
 
