@@ -66,7 +66,7 @@ Vue.component('child', {
 
 [请看此例](https://codepen.io/RalfZ/pen/KmVgxB)
 
-### 正常方法
+### 正常方法（推荐）
 
 比较推荐的做法是父组件通过在子组件放置 `ref='xxx'` 来标记子组件。
 ```HTML
