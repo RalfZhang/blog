@@ -1,12 +1,12 @@
 ---
-title: 浅谈 Vue 父子组件中的通讯————父向子的值传递和事件触发 1/2
+title: 浅谈 Vue 父子组件中的通讯——父向子的值传递和事件触发 1/2
 date: 2017-04-18 00:51:11
 tags:
 - Vue
 ---
 
 
-谈起 Vue 父子组件中的通讯，一定会涉及到事件的触发和值的传递。本文尝试从父组件向子组件传值与触发事件谈一谈父子组件中的通讯问题。
+谈起 Vue 父子组件中的通讯，一定会涉及到事件的触发和值的传递。本文尝试从**父组件向子组件**传值与触发事件谈一谈父子组件中的通讯问题。
 
 
 ![图片](./props-events.png)
@@ -91,9 +91,12 @@ Vue.component('child', {
 
 ## 3. More  
 
-对于稍微大的项目，[Vuex](https://vuex.vuejs.org/zh-cn/intro.html) 可能才是最好的选择方案
+对于稍微大的项目，[Vuex](https://vuex.vuejs.org/zh-cn/intro.html) 可能才是最好的选择方案。  
+更多请看该系列下篇 [关于**子组件向父组件**的值传递和事件触发](/2017/04/19/vue-parent-child-communication-2)
 
 
-## 4. 参考  
+
+
+## 参考  
 https://cn.vuejs.org/v2/guide/components.html  
 http://www.cnblogs.com/QRL909109/p/6166209.html
