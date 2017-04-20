@@ -16,6 +16,7 @@ tags:
 ## 1. 简单的事件触发  
 
 首先，我们从最基础的事件触发开始做起。  
+
 [请看实例](https://codepen.io/RalfZ/pen/EmPbeE)  
 
 ```html
@@ -35,6 +36,7 @@ methods: {
 ## 2. 父组件传参的事件触发
 
 在父组件事件触发（调用）的同时，我们可以给父组件的方法传入父组件的参数。  
+
 [请看实例](https://codepen.io/RalfZ/pen/JNXjxZ)  
 
 相对于 1，这里的变化主要是 
@@ -73,3 +75,21 @@ methods: {
 那么，如果我们父子组件都有传参进入，我们如何解决呢？
 
 [请看实例](https://codepen.io/RalfZ/pen/JNXRbw)  
+
+本例中，主要的逻辑在子组件上的 update 事件上这段里
+```html
+<child @update='function(cnum){ add(fstep, cnum) }'></child>
+```
+通过这种方式，保存父组件的 `fstep`，接收子组件的 `cnum`，再一起传入 `add` 函数中，实现了区分父子组件各自传值的区分。
+
+## 5. 总结  
+针对简单的传值问题，1 和 3 已经可以满足需求。  
+
+2 中也可以采取在 `add` 函数中直接调用 `this.step` 的方式获取父组件的值。相似的，4 中也可以直接在 `add` 函数中调用 `this.fstep`获取值。  
+
+不过，2 和 4 这种模式，可以应对子组件在 `v-for` 循环的情况，来保存 `v-for` 中不同的父组件的值。
+
+## 更多  
+
+正如上一篇中最后所提到的，对于稍微复杂的项目，[Vuex](https://vuex.vuejs.org/zh-cn/intro.html) 可能才是最好的选择方案。  
+介于 Vuex 文档十分详细明了，在此就不画蛇添足了，以免弄巧成拙，误导了大家。
