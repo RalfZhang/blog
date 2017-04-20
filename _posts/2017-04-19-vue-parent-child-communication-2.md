@@ -24,11 +24,11 @@ tags:
 父组件通过在子组件上 `@update='add'` 将父组件的 `add` 放到绑定/注册到 `update` 事件上。
 
 ```js
-  methods: {
-    cadd(){
-      this.$emit('update')
-    }
+methods: {
+  cadd(){
+    this.$emit('update')
   }
+}
 ```
 子组件通过 `this.$emit('update')` 触发父组件绑定在 `update` 上的 `add`。
 
@@ -37,9 +37,24 @@ tags:
 在父组件事件触发（调用）的同时，我们可以给父组件的方法传入父组件的参数。  
 [请看实例](https://codepen.io/RalfZ/pen/JNXjxZ)  
 
-这里的变化主要是 
+相对于 1，这里的变化主要是 
 ```html
-  <child @update='add(step)'></child>
+<child @update='add(step)'></child>
 ```
-父组件的 `step` 作为参数传入到 `add` 方法中。
+父组件的 `step` 作为参数传入到 `add` 方法中。  
 
+
+## 3. 子组件传参的事件触发  
+
+子组件触发父组件事件的同时，很多情况下是有传参需要的，这也是比较常用的子组件向父组件传值方式。
+
+[请看实例](https://codepen.io/RalfZ/pen/xdVxNz)  
+相对于 1，这里的主要变化是
+```js
+methods: {
+  cadd(){
+    this.$emit('update', this.step)
+  }
+}
+```
+要传递的值（载荷）作为 `$emit` 的第二个参数传入到父组件当中，父组件可以直接在 `methods` 里通过参数获取。
