@@ -30,4 +30,16 @@ tags:
     }
   }
 ```
-子组件通过 `this.$emit('update')` 触发父组件的 `add`。
+子组件通过 `this.$emit('update')` 触发父组件绑定在 `update` 上的 `add`。
+
+## 2. 父组件传参的事件触发
+
+在父组件事件触发（调用）的同时，我们可以给父组件的方法传入父组件的参数。  
+[请看实例](https://codepen.io/RalfZ/pen/JNXjxZ)  
+
+这里的变化主要是 
+```html
+  <child @update='add(step)'></child>
+```
+父组件的 `step` 作为参数传入到 `add` 方法中。
+
