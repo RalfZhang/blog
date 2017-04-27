@@ -21,7 +21,7 @@ tags:
 | ---- | ---- |
 | `npm install` | `yarn` |
 | `npm install [package] --save` | `yarn add [package]` |
-| `npm uninstall taco --save` | `yarn remove taco` |
+| `npm uninstall [package] --save` | `yarn remove [package]` |
 | `npm install taco --save-dev` | `yarn add taco --dev` |
 | `npm update --save` | `yarn upgrade` |
 | `npm install taco@latest --save` | `yarn add taco` |
