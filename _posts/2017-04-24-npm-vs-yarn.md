@@ -25,7 +25,7 @@ tags:
 | `npm install [package] --save-dev` | `yarn add [package] --dev` |
 | `npm update --save` | `yarn upgrade` |
 | `npm install [package]@latest --save` | `yarn add [package]` |
-| `npm install taco --global` | `yarn global add taco` |
+| `npm install [package] --global` | `yarn global add [package]` |
 
 ---
 
