@@ -28,7 +28,7 @@ tags:
 安装相关工具：  
 ```bash
 sudo yum install build-essential golang mercurial git
-```  
+```
 请确保都安装成功。  
 （我在安装时遇到 `build-essential` 安装失败，根据 [StackExchange 提示](https://unix.stackexchange.com/questions/16422/cant-install-build-essential-on-centos)，用 `sudo yum groupinstall 'Development Tools'` 解决）  
 
@@ -65,7 +65,7 @@ cp base.pem assets/client/tls/ngrokroot.crt
 接下来，我们需要根据客户端的平台来编译客户端的 ngrok。我的客户端（开发机）是 Windows 64 位操作系统，需要在 VPS 上运行：  
 ```bash
 GOOS=windows GOARCH=amd64 make release-client
-```  
+```
 
 不同平台的配置如下：  
 
@@ -90,11 +90,11 @@ GOOS=windows GOARCH=amd64 make release-client
 ```
 server_addr: yourdomain:4443
 trust_host_root_certs: false
-```  
+```
 最后，运行以下命令即可启动：  
 ```bash
 ngrok.exe  -subdomain=pub -proto=http -config=ngrok.cfg 8000
-```  
+```
 其中，8000 是客户端本地的希望能在公网访问的端口，pub 是子域名。
 
 这时，打开 `pub.yourdomain.com:8081` 即可看到你本地的服务。
