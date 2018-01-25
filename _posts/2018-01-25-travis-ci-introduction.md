@@ -85,3 +85,9 @@ script:
 after_success:
 - scp -r dist name@host:/direction
 ```
+
+
+# 参考
+- https://docs.travis-ci.com/
+- https://cnodejs.org/topic/5885f19c171f3bc843f6017e
+- http://www.voidcn.com/article/p-aglpzloh-c.html
