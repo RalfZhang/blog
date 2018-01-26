@@ -1,5 +1,5 @@
 ---
-title: travis-ci-introduction
+title: Travis CI 简单上手
 date: 2018-01-25 14:34:00
 tags:
 - tool
@@ -11,7 +11,7 @@ tags:
 
 # 解决方案  
 在这里，我们使用 Travis CI 进行[持续集成](https://zh.wikipedia.org/zh-cn/%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88)。该工具可以和 GitHub 搭配使用，它提供了一个在线的命令工具，能读取项目中的 `.travis.yml` 配置文件，执行配置的相关命令。  
-在此以[该项目](https://github.com/RalfZhang/vdo)为例，我们对项目的 master 分支进行监测。在 dev 分支开发完成后，将变动合并到 master 分支，此时，Travis 检测到 master 分支变动，运行打包命令 `yarn run build`，打包完成后运行 `scp -r dist name@host:/direction` 命令将 dist 文件夹部署到服务器。  
+在此以[该项目](https://github.com/RalfZhang/vdo)为例，我们对项目的 master 分支进行监测。在 dev 分支开发完成后，将变动合并到 master 分支，此时，Travis 检测到 master 分支变动，运行打包命令 `yarn run build`，打包完成后运行 `scp -r dist name@8.8.8.8:/direction` 命令将 dist 文件夹部署到服务器。  
 除了 Travis 的配置文件，我们还有问题要解决——如果没有被信任，Travis 的每次执行 scp 命令时都需要输入密码。解决方案很简单，我们把本地开发机的公钥发给服务器，服务器就可以信任本地开发机了，同时我们把本地开发机的私钥交给 Travis，那么 Travis 就可以伪装成本地开发机直接执行 scp 而不需要输入密码。（更多：[分对称加密](https://zh.wikipedia.org/zh-hans/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86)）  
 但这还有一个问题。如果我们把私钥上传到 GitHub，私钥就公开了，服务器分分钟被操。所以我们使用 Travis 的 encrypt-file 来对私钥文件加密，Travis 运行时再对加密后的私钥文件解密，就可以保证安全了。  
 
@@ -23,7 +23,7 @@ tags:
 `ssh-keygen -t rsa`  
 
 拷贝公钥至服务器（如果服务器没有相应的文件请自行创建）  
-`cat .ssh/id_rsa.pub | ssh user@host "cat >> ~/.ssh/authorized_keys"`  
+`cat .ssh/id_rsa.pub | ssh user@8.8.8.8 "cat >> ~/.ssh/authorized_keys"`  
 
 这时候就完成了服务器对本地开发机的信任。可以尝试 ssh 登录，不需要输入密码。  
 
@@ -63,7 +63,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_04c64bd82511_key -iv $encrypted_04c64bd82511_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-- echo -e "Host yourHostIpOrName\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host 8.8.8.8\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 ```
 
 至此完善 `.travis.yml` 相关配置。  
@@ -77,13 +77,13 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_04c64bd82511_key -iv $encrypted_04c64bd82511_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-- echo -e "Host yourHostIpOrName\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host 8.8.8.8\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
 - yarn install
 script:
 - yarn run build
 after_success:
-- scp -r dist name@host:/direction
+- scp -r dist name@8.8.8.8:/direction
 ```
 
 
