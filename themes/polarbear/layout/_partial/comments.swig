@@ -1,7 +1,7 @@
 {% if page.comments and not is_home() %}
   <div class="comments" id="comments">
     {% if theme.disqus_shortname %}
-    <div style="text-align:center;">
+    <div style="text-align:center;display: none;">
         <button class="btn" id="load-disqus" onclick="disqus.load();">加载 Disqus 评论</button>
     </div>
       <div id="disqus_thread">
