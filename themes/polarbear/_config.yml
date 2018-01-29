@@ -44,16 +44,16 @@ widget_custom:
 # color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
 theme:
   color: Default
-  fancybox: false
+  fancybox: true
 
 # ===========================================
 # Third Party Services Settings
 # ===========================================
 
 # Baidu Analytics
-baidu_analytics:
+baidu_analytics: f9a64e560366e81efee97a73f25847bc
 # Google Analytics
-google_analytics:
+google_analytics: UA-113221956-1
 
 # Duoshuo
 duoshuo_shortname:
