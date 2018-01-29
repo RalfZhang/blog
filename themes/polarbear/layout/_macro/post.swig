@@ -32,6 +32,7 @@
           {% else %}
             <div class="post-content">
             {{ post.content }}
+            {% include "../_partial/copyright.swig" %}
             </div>
           {% endif %}
 
