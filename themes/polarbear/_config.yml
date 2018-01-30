@@ -19,6 +19,7 @@ rss: default
 menu:
   Archives: /archives
   About: /about
+  Links: /links
   RSS: /atom.xml
 
 # ===========================================
@@ -45,7 +46,13 @@ widget_custom:
 # color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
 theme:
   color: Default
-  fancybox: true
+  fancybox: false
+
+
+# ===========================================
+# Copyright Settings
+# ===========================================
+copyright: true
 
 # ===========================================
 # Third Party Services Settings
@@ -65,4 +72,4 @@ disqus_shortname: ralfzblog
 # ===========================================
 # Version
 # ===========================================
-version: 1.1
+version: 1.0
