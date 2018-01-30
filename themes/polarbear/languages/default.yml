@@ -3,7 +3,9 @@ menu:
   archives: Archives
   tags: Tags
   categories: Categories
+  links: Links
   about: About
+  rss: RSS
 
 footer:
   powered: "Powered by %s"
