@@ -1,18 +1,16 @@
 // ==============================
 // Header
 // ==============================
-
 .header {
-  @include clearfix;
-  padding: $header-padding;
+    @include clearfix;
+    padding: $header-padding;
 }
 
-
 @include max-screen() {
-  .header {
-    padding: 20px 0 0;
-    text-align: center;
-  }
+    .header {
+        padding: 20px 0 0;
+        text-align: center;
+    }
 }
 
 #masthead {
@@ -20,7 +18,36 @@
     top: 0;
     right: 0;
     left: 0;
-    box-shadow: 0 0 1px rgba(0,0,0,.15);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .15);
+}
+
+@include min-header() {
+    #masthead {
+        .site-header-inner {
+            transition: 1s all;
+            height: auto;
+        }
+        .site-title {
+            display: block;
+            margin: 0 auto;
+            float: none;
+            text-align: center;
+        }
+        #nav-top {
+            float: none;
+            margin-top: -15px;
+        }
+        .nav-top-items {
+            justify-content: center;
+            display: flex;
+            margin: 0 -10px;
+            flex-wrap: wrap;
+            li.menu-item {
+                margin-left: 0;
+                margin: 0 10px;
+            }
+        }
+    }
 }
 
 .site-header-inner {
@@ -42,16 +69,14 @@
 
 #nav-top {
     float: right;
-    
     .nav-top-items {
         list-style: none;
         padding-left: 0px;
-    	margin: 0 auto;
-
+        margin: 0 auto;
         .menu-item {
-        	font-size: $global-font-size;
-        	margin-left: 30px;
-        	display: inline-block;
+            font-size: $global-font-size;
+            margin-left: 30px;
+            display: inline-block;
             a {
                 color: rgba(0, 0, 0, 0.6);
             }

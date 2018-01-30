@@ -9,6 +9,8 @@
 
   .post-link {
     @include underline-from-center;
+    display: inline;
+    vertical-align: initial;
   }
 
 }
