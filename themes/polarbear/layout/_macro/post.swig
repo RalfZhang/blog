@@ -17,7 +17,7 @@
 
 
     {% if is_home() %}
-        <div class="post-excerpt">
+        <div class="post-excerpt post-content">
             {% set excerpt = "" %}
             {% if post.description %}
               {% set excerpt = post.description %}
@@ -32,6 +32,9 @@
           {% else %}
             <div class="post-content">
             {{ post.content }}
+            {% if theme.copyright %}
+              {% include "../_partial/copyright.swig" %}
+            {% endif %}
             </div>
           {% endif %}
 
