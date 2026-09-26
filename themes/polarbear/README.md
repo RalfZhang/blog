@@ -7,9 +7,12 @@
 ![Polar Bear](https://wx3.sinaimg.cn/large/e942863dly1fd36foz16ij21kw0xwjxw.jpg)
 
 ## 安装使用（Installation）
+
+> 本仓库中的这份主题已从 swig 迁移到 Nunjucks（`.njk`，使用 Hexo 5+ 内置的渲染器），样式改用 Dart Sass 模块（`@use`）。上游仓库仍是 swig 版本。
+> This copy has been migrated from swig to Nunjucks (`.njk`, rendered by the built-in renderer of Hexo 5+) and its styles to Dart Sass modules (`@use`). The upstream repository is still the swig version.
+
 ```
-$ npm install hexo-renderer-scss --save
-$ git clone https://github.com/frostfan/hexo-theme-polarbear themes/polarbear
+$ npm install hexo-renderer-dartsass --save
 ```
 
 修改（Change） polarbear/config.yml `theme: polarbear`

@@ -1,0 +1,8 @@
+{% if theme.widget.Tags %}
+    <section id="tags" class="widget-area widget_tags">
+        <h3 class="widget-title">{{ __('menu.tags') }}</h3>
+        {# Top 10 tags by post count. Tags have no `count` field (the post count is `length`), and pre-sorting
+           by name keeps ties in a stable order, so the same tags are shown on every build. #}
+        {{ list_tags(site.tags.sort('name'), {show_count: true, amount: 10, orderby: 'length', order: -1}) }}
+    </section>
+{% endif %}

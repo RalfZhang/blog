@@ -1,9 +1,11 @@
-{% if theme.disqus_shortname %}
+{# The #disqus_thread container is only rendered on posts (_partial/comments.njk) #}
+{% if theme.disqus_shortname and page.comments and is_post() %}
 <script type="text/javascript">
   var disqus_shortname = '{{theme.disqus_shortname}}';
   var disqus_identifier = '{{ page.path }}';
+  var disqus_url = {{ page.permalink | safedump }};
 
-  var disqus_title = "{{ page.title|addslashes }}";
+  var disqus_title = {{ page.title | safedump }};
 
 
   var disqus = {
@@ -21,13 +23,11 @@
   };
   disqus.load();
 
-  {% if page.comments %}
-    var disqus_config = function () {
-        this.page.url = disqus_url;
-        this.page.identifier = disqus_identifier;
-        this.page.title = disqus_title;
-    };
-  {% endif %}
+  var disqus_config = function () {
+      this.page.url = disqus_url;
+      this.page.identifier = disqus_identifier;
+      this.page.title = disqus_title;
+  };
 
 </script>
 {% endif %}

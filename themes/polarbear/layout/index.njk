@@ -1,15 +1,15 @@
-{% extends "_layout.swig" %}
-{% import '_macro/post.swig' as post_template %}
+{% extends "_layout.njk" %}
+{% import '_macro/post.njk' as post_template with context %}
 
 
 {% block title %} {{ config.title }} - {{ config.description }}{% endblock %}
 
 {% block content %}
     <div id="primary" class="home">
-        {% for post in page.posts %}
+        {% for post in page.posts | toarray %}
             {{ post_template.render(post) }}
         {% endfor %}
-        {% include "_partial/pagination.swig" %}
+        {% include "_partial/pagination.njk" %}
     </div>
-    {% include "_partial/widget.swig" %}
+    {% include "_partial/widget.njk" %}
 {% endblock %}

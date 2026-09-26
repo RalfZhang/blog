@@ -1,3 +1,0 @@
-# blog  
-
-hexo blog backup

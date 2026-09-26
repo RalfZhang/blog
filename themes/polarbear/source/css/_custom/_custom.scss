@@ -1,4 +1,7 @@
 // ==============================
 // Custom style
 // ==============================
-// You can override the variables in _variables.scss to customize the style
+// You can override the !default variables in _variables.scss to customize the style.
+// This file is loaded first by style.scss, so configure the variables module here, e.g.:
+//
+// @use "../variables" with ($theme-color: #16982B, $global-font-size: 15px);

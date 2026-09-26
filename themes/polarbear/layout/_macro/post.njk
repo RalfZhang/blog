@@ -27,30 +27,30 @@
 
             {% if excerpt %}
               {{ excerpt }}
-        </div>
             {% endif %}
-          {% else %}
-            <div class="post-content">
+        </div>
+    {% else %}
+        <div class="post-content">
             {{ post.content }}
             {% if theme.copyright %}
-              {% include "../_partial/copyright.swig" %}
+              {% include "_partial/copyright.njk" %}
             {% endif %}
-            </div>
-          {% endif %}
+        </div>
+    {% endif %}
 
     {% if not is_home() %}
       <footer class="post-footer">
 		{% if post.tags and post.tags.length %}
 		<div class="post-tags">
-		  {% for tag in post.tags %}
+		  {% for tag in post.tags | toarray %}
 			<a href="{{ url_for(tag.path) }}">{{ tag.name }}</a>
 		  {% endfor %}
 		</div>
 		{% endif %}
 
         {# Post Pagination #}
-        {% include "../_partial/pagination.swig" %}
-        {% include "../_partial/comments.swig" %}
+        {% include "_partial/pagination.njk" %}
+        {% include "_partial/comments.njk" %}
       </footer>
     {% endif %}
   </article>

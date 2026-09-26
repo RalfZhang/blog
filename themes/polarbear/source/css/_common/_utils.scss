@@ -1,3 +1,5 @@
+@use "../variables";
+
 @mixin clearfix() {
   &:before,
   &:after {
@@ -11,19 +13,19 @@
 }
 
 @mixin min-screen() {
-   @media screen and (min-width: $global-body-width) {
+   @media screen and (min-width: variables.$global-body-width) {
      @content;
    }
 }
 
 @mixin max-screen() {
-   @media only screen and (max-width: $global-content-width) {
+   @media only screen and (max-width: variables.$global-content-width) {
      @content;
    }
 }
 
 @mixin min-header() {
-  @media screen and (max-width: $global-header-min-width) {
+  @media screen and (max-width: variables.$global-header-min-width) {
     @content;
   }
 }

@@ -13,13 +13,14 @@
       {% endif %}
     {% endif %}
 
-    {% for post in page.posts %}
+    {# Declared outside the loop so the assignment below carries over to the next iteration #}
+    {% set year = '' %}
+    {% for post in page.posts | toarray %}
       {% if page.archive %}
-        {% set year %}
-        {% set post.year = date(post.date, 'YYYY') %}
+        {% set post_year = date(post.date, 'YYYY') %}
 
-        {% if post.year !== year %}
-          {% set year = post.year %}
+        {% if post_year !== year %}
+          {% set year = post_year %}
           <div class="collection-title">
             <h2 class="archive-year">{{ year }}</h2>
           </div>
@@ -44,5 +45,5 @@
   </section>
  </div>
 
-  {% include '../_partial/pagination.swig' %}
+  {% include '_partial/pagination.njk' %}
 {% endmacro %}

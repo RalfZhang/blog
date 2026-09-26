@@ -10,7 +10,8 @@
                     <li class="menu-item">
                         <a href="{{ url_for(path) }}">
                             {% set itemName = 'menu.' + name.toLowerCase() %}
-                            {% if itemName.startsWith('menu') %}
+                            {# __() returns the key itself when there is no translation #}
+                            {% if __(itemName).startsWith('menu.') %}
                                 {{ name }}
                             {% else %}
                                 {{ __(itemName) }}

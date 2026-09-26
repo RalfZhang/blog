@@ -1,5 +1,5 @@
 {# Website mata #}
-{% include "./_head/meta.swig" %}
+{% include "_partial/_head/meta.njk" %}
 
 {# Website rss #}
 {% if theme.rss === 'default' and config.feed and config.feed.path %}
@@ -30,9 +30,9 @@
 {% endif %}
 
 {# Theme Configuration #}
-{% include "../_script/config.swig" %}
+{% include "_script/config.njk" %}
 
 {# Analytics #}
 {% if not env.debug %}
-  {% include "../_script/analytics.swig" %}
+  {% include "_script/analytics.njk" %}
 {% endif %}
