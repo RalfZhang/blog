@@ -64,6 +64,9 @@ tag_map:
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+## A fresh CI checkout resets every file's mtime, so posts without `updated` in front-matter fall back to `date`
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
