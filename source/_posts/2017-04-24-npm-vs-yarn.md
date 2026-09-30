@@ -9,7 +9,7 @@ tags:
 
 
 <p align="center">
-    <img alt="npm & Yarn" src="./logos.png" width="546">
+    <img alt="npm & Yarn" src="{% asset_path logos.png %}" width="546">
 </p>
 
 
