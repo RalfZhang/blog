@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.ralfz.com
+url: https://blog.ralfz.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -79,7 +79,4 @@ pagination_dir: page
 theme: polarbear
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: ralfz@blog.ralfz.com:git/blog.git
+## Pushing to main builds and deploys the site to GitHub Pages (.github/workflows/pages.yml)
