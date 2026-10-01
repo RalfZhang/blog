@@ -18,7 +18,7 @@ rss: default
 # ===========================================
 menu:
   Archives: /archives
-  About: /about
+  About: http://ralfz.com/ # ralfz.com has no HTTPS yet
   Links: /links
   RSS: /atom.xml
 
