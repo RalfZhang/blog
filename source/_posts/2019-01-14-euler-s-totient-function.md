@@ -31,12 +31,41 @@ mathjax: true
 
 于是给出了如下做法
 
-```javascript
-// 待补充
+{% codetabs %}
+```js
+function isPrime(n) {
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) return false;
+  }
+  return n >= 2;
+}
+
+const LIMIT = 1000000;
+let n = 1;
+for (let p = 2; n * p <= LIMIT; p++) {
+  if (isPrime(p)) n *= p;
+}
+console.log(n); // 510510
 ```
 
+```python
+from math import isqrt
+
+def is_prime(n):
+    return n >= 2 and all(n % i for i in range(2, isqrt(n) + 1))
+
+LIMIT = 1_000_000
+n, p = 1, 2
+while n * p <= LIMIT:
+    if is_prime(p):
+        n *= p
+    p += 1
+print(n)  # 510510
+```
+{% endcodetabs %}
+
 得到的答案是 510510，尝试提交，成功！
-其实就是从 2 乘到 17 就可以了，或者说是 17 的质数阶乘"（写作 17#）。
+其实就是质数从 2 乘到 17 就可以了，或者说是 17 的质数阶乘（写作 17#）。
 
 这时候我们再回过来头看看这个思路。
 

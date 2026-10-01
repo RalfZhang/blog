@@ -42,6 +42,21 @@ code {
     }
   }
 
+  // Code blocks grouped by {% codetabs %}: the tab bar takes the place of each block's own label.
+  .code-tabs.is-ready & {
+    margin: 0;
+    box-shadow: none;
+
+    table::after {
+      display: none;
+    }
+
+    .code pre,
+    .gutter pre {
+      padding-top: 10px;
+    }
+  }
+
   .code {
     pre {
       margin: 0;
@@ -124,6 +139,35 @@ code {
     .built_in,
     .deletion {
       color: map.get(variables.$code-highlight-color, built_in);
+    }
+  }
+}
+
+.code-tabs.is-ready {
+  margin: 1em 0;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+}
+
+.code-tabs-nav {
+  font-size: variables.$code-font-size;
+  background: color.adjust(variables.$code-background, $lightness: -3%);
+
+  button {
+    padding: 2px 7px;
+    border: 0;
+    font: inherit;
+    font-weight: bold;
+    color: variables.$gray;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+      color: variables.$dark-gray;
+    }
+
+    &.is-active {
+      color: variables.$global-font-color;
+      background: variables.$code-background;
     }
   }
 }
