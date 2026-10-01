@@ -1,6 +1,6 @@
 <div class="site-header-inner">
     <h1 class="site-title">
-        <a href="{{ url_for('.') }}" class="logo">{{ config.title }}</a>
+        <a href="{{ url_for(lang_path('/')) }}" class="logo">{{ config.title }}</a>
     </h1>
 
     <nav id="nav-top">
@@ -8,7 +8,7 @@
             <ul id="menu-top" class="nav-top-items">
                 {% for name, path in theme.menu %}
                     <li class="menu-item">
-                        <a href="{{ url_for(path) }}">
+                        <a href="{{ url_for(lang_path(path)) }}">
                             {% set itemName = 'menu.' + name.toLowerCase() %}
                             {# __() returns the key itself when there is no translation #}
                             {% if __(itemName).startsWith('menu.') %}
@@ -18,6 +18,14 @@
                             {% endif %}
                         </a>
                     </li>
+                {% endfor %}
+                {# Language switch, shown when this page has a translation #}
+                {% for version in translations() %}
+                    {% if version.lang != page.lang %}
+                        <li class="menu-item">
+                            <a href="{{ url_for(version.path) }}" hreflang="{{ version.lang }}" lang="{{ version.lang }}">{{ version.name }}</a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         {% endif %}

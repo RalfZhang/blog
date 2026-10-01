@@ -1,3 +1,6 @@
+# Name of this language in the language switch
+language: English
+
 menu:
   home: Home
   archives: Archives
@@ -16,6 +19,13 @@ posts:
   next: Next
   prev_post: Prev
   next_post: Next
+
+copyright:
+  license: "This post is licensed under %s. Please credit the source if you republish it."
+  link: "Permalink:"
+
+comments:
+  load: "Load %s comments"
 
 counter:
   archives:

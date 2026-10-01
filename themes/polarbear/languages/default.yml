@@ -17,6 +17,13 @@ posts:
   prev_post: Prev
   next_post: Next
 
+copyright:
+  license: "This post is licensed under %s. Please credit the source if you republish it."
+  link: "Permalink:"
+
+comments:
+  load: "Load %s comments"
+
 counter:
   archives:
     zero: No Posts

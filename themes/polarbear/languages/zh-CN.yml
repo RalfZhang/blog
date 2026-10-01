@@ -1,3 +1,6 @@
+# Name of this language in the language switch
+language: 中文
+
 menu:
   home: 首页
   archives: 归档
@@ -16,6 +19,13 @@ posts:
   next: 下一页
   prev_post: 上一篇
   next_post: 下一篇
+
+copyright:
+  license: "本文采用 %s 许可协议，转载请注明出处。"
+  link: 本文地址：
+
+comments:
+  load: "加载 %s 评论"
 
 counter:
   archives:

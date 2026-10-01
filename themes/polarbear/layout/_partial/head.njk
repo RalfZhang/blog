@@ -18,6 +18,14 @@
 {# Canonical, good for google search engine #}
 <link rel="canonical" href="{{ config.url }}/{{ page.canonical_path.replace('index.html', '') }}"/>
 
+{# Translations of this page #}
+{% set versions = translations() %}
+{% if versions.length > 1 %}
+  {% for version in versions %}
+    <link rel="alternate" hreflang="{{ version.lang }}" href="{{ full_url_for(version.path) }}"/>
+  {% endfor %}
+{% endif %}
+
 {# Open Graph #}
 {{ open_graph() }}
 
