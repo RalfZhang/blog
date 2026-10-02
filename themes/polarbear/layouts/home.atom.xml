@@ -1,0 +1,35 @@
+{{- /* The Atom feed of a language: /atom.xml, /en/atom.xml. Entry ids are the post URLs, as on the Hexo site, so
+feed readers don't show the old posts again. */ -}}
+{{- $posts := first 20 (where site.RegularPages "Section" "posts") -}}
+{{- $time := "2006-01-02T15:04:05.000Z" -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.Title }}</title>
+  {{ with .OutputFormats.Get "atom" }}
+  <link href="{{ .Permalink }}" rel="self"/>
+  {{ end }}
+  <link href="{{ .Permalink }}"/>
+  {{ with $posts }}
+  <updated>{{ (index . 0).Date.UTC.Format $time }}</updated>
+  {{ end }}
+  <id>{{ .Permalink }}</id>
+  <author>
+    <name>{{ site.Params.author }}</name>
+  </author>
+  <generator uri="https://gohugo.io/">Hugo</generator>
+  {{ range $posts }}
+  <entry>
+    <title>{{ .Title }}</title>
+    <link href="{{ .Permalink }}"/>
+    <id>{{ .Permalink }}</id>
+    <published>{{ .Date.UTC.Format $time }}</published>
+    <updated>{{ .Lastmod.UTC.Format $time }}</updated>
+    <content type="html">{{ .Content | transform.XMLEscape | safeHTML }}</content>
+    {{- /* plain text; HTML entities such as &rsquo; don't exist in XML */}}
+    <summary>{{ .Summary | replaceRE `</(h[1-6]|p|li|blockquote|pre)>` " " | plainify | htmlUnescape | strings.TrimSpace | truncate 140 }}</summary>
+    {{ range .GetTerms "tags" }}
+    <category term="{{ .LinkTitle }}" scheme="{{ .Permalink }}"/>
+    {{ end }}
+  </entry>
+  {{ end }}
+</feed>

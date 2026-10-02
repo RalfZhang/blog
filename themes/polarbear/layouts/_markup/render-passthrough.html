@@ -1,0 +1,11 @@
+{{- /* LaTeX between the passthrough delimiters in hugo.yaml, rendered to HTML with KaTeX at build time. The page
+then loads the KaTeX stylesheet (_partials/head.html). */ -}}
+{{- $opts := dict "output" "htmlAndMathml" "displayMode" (eq .Type "block") }}
+{{- with try (transform.ToMath .Inner $opts) }}
+  {{- with .Err }}
+    {{- errorf "Unable to render math in %s: %s" $.Position . }}
+  {{- else }}
+    {{- .Value }}
+    {{- $.Page.Store.Set "hasMath" true }}
+  {{- end }}
+{{- end -}}

@@ -1,0 +1,41 @@
+{{/* The #disqus_thread container is only rendered on posts (_partials/comments.html) */}}
+{{ $shortname := site.Config.Services.Disqus.Shortname }}
+{{ if and $shortname (partial "func/comments-enabled.html" .) }}
+{{/* The thread identifier is the post path that the Hexo site used, so that existing threads stay attached:
+     without a leading slash for the default language (2017/12/28/ngrok-tutorial/), with one for translations
+     (/en/2017/12/28/ngrok-tutorial/). */}}
+{{ $identifier := .RelPermalink }}
+{{ if eq .Language.Lang hugo.Sites.Default.Language.Lang }}
+  {{ $identifier = strings.TrimPrefix "/" .RelPermalink }}
+{{ end }}
+<script type="text/javascript">
+  var disqus_shortname = {{ $shortname }};
+  var disqus_identifier = {{ $identifier }};
+  var disqus_url = {{ .Permalink }};
+
+  var disqus_title = {{ .Title }};
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          // $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  };
+  disqus.load();
+
+  var disqus_config = function () {
+      this.page.url = disqus_url;
+      this.page.identifier = disqus_identifier;
+      this.page.title = disqus_title;
+  };
+
+</script>
+{{ end }}

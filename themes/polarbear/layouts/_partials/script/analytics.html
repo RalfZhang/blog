@@ -1,0 +1,15 @@
+{{/* Baidu Analytics */}}
+{{ with site.Params.baidu_analytics }}
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?{{ . }}";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+{{ end }}
+
+{{/* Google Analytics 4, when services.googleAnalytics.id is set */}}
+{{ partial "google_analytics.html" . }}

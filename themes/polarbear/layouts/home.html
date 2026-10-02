@@ -1,0 +1,11 @@
+{{ define "title" }}{{ site.Title }} - {{ site.Params.description }}{{ end }}
+
+{{ define "main" }}
+    <div id="primary" class="home">
+        {{ range (.Paginate (where site.RegularPages "Section" "posts")).Pages }}
+            {{ partial "post.html" (dict "post" . "isHome" true) }}
+        {{ end }}
+        {{ partial "pagination.html" . }}
+    </div>
+    {{ partial "widget.html" . }}
+{{ end }}

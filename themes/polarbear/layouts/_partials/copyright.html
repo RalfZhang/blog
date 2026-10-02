@@ -1,0 +1,6 @@
+<br/>
+<div style='border-top: 1px solid #eee'></div>
+{{ $license := `<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a>` -}}
+<p style='margin:0; margin-top: 40px'>{{ T "copyright.license" (dict "license" $license) | safeHTML }}
+<br/>
+{{ T "copyright.link" }} <a href="{{ .Permalink }}">{{ .Permalink }}</a></p>

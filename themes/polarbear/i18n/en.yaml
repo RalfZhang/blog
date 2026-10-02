@@ -1,0 +1,32 @@
+# The name of each language in the language switch is its `label` in the site config
+
+menu:
+  home: Home
+  archives: Archives
+  tags: Tags
+  categories: Categories
+  links: Links
+  about: About
+  rss: RSS
+
+footer:
+  powered: "Powered by {{ .links }}"
+  theme: Theme
+
+posts:
+  prev: Prev
+  next: Next
+  prev_post: Prev
+  next_post: Next
+
+copyright:
+  license: "This post is licensed under {{ .license }}. Please credit the source if you republish it."
+  link: "Permalink:"
+
+comments:
+  load: "Load {{ .name }} comments"
+
+# Post dates (layouts/_partials/func/date.html)
+date:
+  long: "{{ .MonthName }} {{ .Day }} {{ .Year }}"
+  short: "{{ .MonthName }} {{ .Day }}"

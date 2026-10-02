@@ -1,0 +1,11 @@
+{{- /* Headings keep the ids the Hexo site gave them, so links to their #anchors still work: the heading text with
+each run of whitespace and ASCII punctuation turned into "-", case kept (hexo-util's slugize). A repeated heading
+gets the -1, -2 suffix of goldmark's own anchor, which numbers repeats the same way. */ -}}
+{{- $special := "[\\s~`!@#$%^&*()\\-_+=\\[\\]{}|\\\\;:\"'<>,.?/]+" }}
+{{- $id := strings.Trim (replaceRE $special "-" .PlainText) "-" }}
+{{- $anchor := anchorize .PlainText }}
+{{- if and (ne .Anchor $anchor) (strings.HasPrefix .Anchor (print $anchor "-")) }}
+  {{- $id = print $id (strings.TrimPrefix $anchor .Anchor) }}
+{{- end -}}
+<h{{ .Level }} id="{{ $id }}"><a href="#{{ $id }}" class="headerlink" title="{{ .PlainText }}"></a>{{ .Text }}</h{{ .Level }}>
+{{- /**/ -}}

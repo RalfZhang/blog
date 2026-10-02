@@ -1,0 +1,108 @@
+# Hugo configuration
+## Docs: https://gohugo.io/configuration/
+
+baseURL: https://blog.ralfz.com/
+title: RalfZ's blog
+theme: polarbear
+
+# Post dates carry no UTC offset; they were written in Asia/Shanghai. This also fixes the date in each post URL.
+timeZone: Asia/Shanghai
+
+# Keep the case of the URLs the site has always had: /2017/04/02/Hello/, /tags/JavaScript/
+disablePathToLower: true
+# Show tag names as written ("node", not "Node")
+capitalizeListTitles: false
+# Count Chinese text by characters, for summaries (feed, Open Graph)
+hasCJKLanguage: true
+
+# Languages
+## Chinese is the default language and lives at /; English lives under /en/.
+## A post's translation sits next to it in the same bundle: content/posts/<name>/index.md and index.en.md.
+## The two share the bundle's images.
+defaultContentLanguage: zh-cn
+defaultContentLanguageInSubdir: false
+disableDefaultLanguageRedirect: true # no redirect page at /zh-cn/
+
+languages:
+  zh-cn:
+    label: 中文
+    locale: zh-CN
+    weight: 1
+    menus:
+      main:
+        - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
+        - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 } # ralfz.com has no HTTPS yet
+        - { identifier: links, name: Links, pageRef: /links, weight: 3 }
+        - { identifier: rss, name: RSS, url: /atom.xml, weight: 4 }
+  en:
+    label: English
+    locale: en
+    weight: 2
+    menus:
+      main:
+        - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
+        - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 }
+        - { identifier: links, name: Links, url: /links/, weight: 3 } # the links page is Chinese only
+        - { identifier: rss, name: RSS, url: /en/atom.xml, weight: 4 }
+
+# URL
+permalinks:
+  page:
+    posts: /:year/:month/:day/:slug/
+
+taxonomies:
+  tag: tags
+
+pagination:
+  pagerSize: 10
+  disableAliases: true # no /page/1/ redirect pages
+
+# Output
+## Each language has an Atom feed (/atom.xml, /en/atom.xml) in place of Hugo's RSS feed
+mediaTypes:
+  application/atom+xml:
+    suffixes: [xml]
+
+outputFormats:
+  atom:
+    mediaType: application/atom+xml
+    baseName: atom
+    rel: alternate
+
+outputs:
+  home: [html, atom]
+  page: [html]
+  section: [html]
+  taxonomy: [html]
+  term: [html]
+
+# Tag list pages (/tags/) were never generated
+disableKinds: [taxonomy]
+
+# Markdown
+markup:
+  goldmark:
+    renderer:
+      hardWraps: true # a line break in a paragraph is a <br>, as on the Hexo site
+      unsafe: true # posts contain raw HTML
+    extensions:
+      passthrough: # LaTeX, rendered to HTML at build time (layouts/_markup/render-passthrough.html)
+        enable: true
+        delimiters:
+          block: [['$$', '$$']]
+          inline: [['\(', '\)']]
+  highlight:
+    noClasses: false # token colours come from the theme stylesheet
+
+# Third party services
+services:
+  disqus:
+    shortname: ralfzblog
+  googleAnalytics:
+    id: '' # TODO: GA4 measurement ID (G-XXXXXXXXXX). The old UA-113221956-1 stopped collecting data in July 2023.
+
+params:
+  author: RalfZ
+  description: frontend, web, javascript, vue, vuejs
+  since: 2017
+  baidu_analytics: f9a64e560366e81efee97a73f25847bc

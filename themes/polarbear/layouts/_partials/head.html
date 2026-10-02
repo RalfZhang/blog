@@ -1,0 +1,53 @@
+{{/* Website meta */}}
+{{ partial "head/meta.html" . }}
+
+{{/* Website feed: the Atom feed of this page's language */}}
+{{ with site.Home.OutputFormats.Get "atom" }}
+  <link rel="alternate" href="{{ .RelPermalink }}" title="{{ site.Title }}" type="application/atom+xml">
+{{ end }}
+
+{{/* Website favicon */}}
+{{ with site.Params.favicon }}
+  <link rel="shortcut icon" type="image/x-icon" href="{{ . | relURL }}?v={{ site.Params.version }}" />
+{{ end }}
+
+{{/* Canonical, good for google search engine */}}
+<link rel="canonical" href="{{ .Permalink }}"/>
+
+{{/* Translations of this page */}}
+{{ if .IsTranslated }}
+  {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}"/>
+  {{ end }}
+{{ end }}
+
+{{/* Open Graph */}}
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
+
+{{/* Theme styling */}}
+{{ $sass := dict "transpiler" "dartsass" "targetPath" "css/style.css" "vars" (dict "theme-color" site.Params.theme.color) }}
+{{ with resources.Get "css/style.scss" | css.Sass $sass }}
+  {{ $style := cond hugo.IsProduction (. | minify | fingerprint) . }}
+  <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}" />
+{{ end }}
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+{{/* Fancybox styling */}}
+{{ if site.Params.theme.fancybox }}
+  <link rel="stylesheet" type="text/css" href="{{ "lib/fancybox/jquery.fancybox.css" | relURL }}" />
+{{ end }}
+
+{{/* Math: the KaTeX stylesheet, on pages where render-passthrough.html rendered math. Rendering the content
+     first is what runs that hook. The version must match the KaTeX that Hugo embeds (0.18.4 in Hugo 0.167). */}}
+{{ $noop := .Content }}
+{{ if .Store.Get "hasMath" }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.css" integrity="sha384-u1zONI5gPXUx0UKI62c75/zww972y0v2rSK5ZYlVdS6xEuWDeZWUI66v6t1gvlXJ" crossorigin="anonymous">
+{{ end }}
+
+{{/* Theme Configuration */}}
+{{ partial "script/config.html" . }}
+
+{{/* Analytics */}}
+{{ if hugo.IsProduction }}
+  {{ partial "script/analytics.html" . }}
+{{ end }}

@@ -1,0 +1,15 @@
+{{ if partial "func/comments-enabled.html" . }}
+  <div class="comments" id="comments">
+    {{ if site.Config.Services.Disqus.Shortname }}
+    <div style="text-align:center;display: none;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">{{ T "comments.load" (dict "name" "Disqus") }}</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,10 @@
+{{- /* The markup of the Hexo site's highlight.js output (figure.highlight.<lang> > table > td.gutter + td.code), so
+that the code styles (assets/css/_partial/_post/_code.scss) and Theme.codeTabs keep working. Chroma highlights
+the tokens. */ -}}
+{{- $lang := lower .Type | default "plaintext" }}
+{{- $lines := split (strings.TrimRight "\n" .Inner) "\n" }}
+{{- $code := (transform.HighlightCodeBlock . (dict "lineNos" false)).Inner }}
+<figure class="highlight {{ $lang }}"><table><tr><td class="gutter"><pre>
+{{- range $i, $_ := $lines }}<span class="line">{{ add $i 1 }}</span><br>{{ end -}}
+</pre></td><td class="code"><pre>{{ $code }}</pre></td></tr></table></figure>
+{{- /**/ -}}

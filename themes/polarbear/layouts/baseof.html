@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    {{ partial "head.html" . }}
+    <title>{{ block "title" . }}{{ end }}</title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead">
+        {{- partial "header.html" . }}
+      </header>
+      <div id="content">
+        {{ block "main" . }}{{ end }}
+      </div>
+
+      <footer id="colophon">
+        {{- partial "footer.html" . }}
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    {{ partial "script/comments.html" . }}
+    {{ partial "script/libs.html" . }}
+    {{ partial "script/theme.html" . }}
+  </body>
+</html>

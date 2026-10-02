@@ -1,0 +1,56 @@
+{{/* A post, in full on its own page or as a title on the home page. Takes dict "post" "isHome". */}}
+{{ $post := .post }}
+{{ $isHome := .isHome }}
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        {{ if $isHome }}
+          <a class="post-link" href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+        {{ else }}
+          {{ $post.Title }}
+        {{ end }}
+      </h1>
+
+      <time class="post-time">
+          {{ partial "func/date.html" (dict "date" $post.Date "format" "date.long") }}
+      </time>
+    </header>
+
+
+
+    {{ if $isHome }}
+        <div class="post-excerpt post-content">
+            {{/* The front matter description, else the part above a <!--more--> divider */}}
+            {{ with $post.Description }}
+              {{ . }}
+            {{ else }}
+              {{ if strings.Contains $post.RawContent "<!--more-->" }}
+                {{ $post.Summary }}
+              {{ end }}
+            {{ end }}
+        </div>
+    {{ else }}
+        <div class="post-content">
+            {{ $post.Content }}
+            {{ if site.Params.copyright }}
+              {{ partial "copyright.html" $post }}
+            {{ end }}
+        </div>
+    {{ end }}
+
+    {{ if not $isHome }}
+      <footer class="post-footer">
+		{{ with $post.GetTerms "tags" }}
+		<div class="post-tags">
+		  {{ range . }}
+			<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+		  {{ end }}
+		</div>
+		{{ end }}
+
+        {{/* Post Pagination */}}
+        {{ partial "pagination.html" $post }}
+        {{ partial "comments.html" $post }}
+      </footer>
+    {{ end }}
+  </article>

@@ -1,0 +1,6 @@
+{{/* The archives (content/archives/_index.md): every post of this language, by year */}}
+{{ define "title" }}{{ T "menu.archives" }} - {{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  {{ partial "archive.html" (dict "page" . "pages" (where site.RegularPages "Section" "posts") "isArchive" true) }}
+{{ end }}

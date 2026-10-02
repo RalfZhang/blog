@@ -1,0 +1,9 @@
+{{- /* In the feed, MathML only: feed readers don't load the KaTeX stylesheet that the HTML output needs, and
+most of them render MathML. */ -}}
+{{- with try (transform.ToMath .Inner (dict "output" "mathml" "displayMode" (eq .Type "block"))) }}
+  {{- with .Err }}
+    {{- errorf "Unable to render math in %s: %s" $.Position . }}
+  {{- else }}
+    {{- .Value }}
+  {{- end }}
+{{- end -}}

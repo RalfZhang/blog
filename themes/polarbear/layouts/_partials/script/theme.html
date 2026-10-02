@@ -1,0 +1,6 @@
+{{ range slice "js/src/theme.js" "js/src/bootstrap.js" }}
+  {{ with resources.Get . }}
+    {{ $script := cond hugo.IsProduction (. | minify | fingerprint) . }}
+    <script type="text/javascript" src="{{ $script.RelPermalink }}"></script>
+  {{ end }}
+{{ end }}

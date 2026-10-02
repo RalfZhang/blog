@@ -1,0 +1,15 @@
+<span class="copyright-year">
+    {{ $current := now.Year }}
+        &copy;
+    {{ with site.Params.since }}
+      {{ if ne . $current }}
+        {{ . }} -
+      {{ end }}
+    {{ end }}
+    {{ $current }}
+    <span class="footer-author">{{ site.Params.author }}.</span>
+    <span class="power-by">
+        {{ $links := `<a class="hugo-link" href="https://gohugo.io/">Hugo</a> &amp; <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>` }}
+        {{ T "footer.powered" (dict "links" $links) | safeHTML }}
+    </span>
+</span>

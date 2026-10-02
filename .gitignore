@@ -1,9 +1,8 @@
 .DS_Store
 Thumbs.db
-db.json
 *.log
-node_modules/
+
+# Hugo
 public/
-.deploy*/
-themes/landscape/
-themes/even
+resources/_gen/
+.hugo_build.lock

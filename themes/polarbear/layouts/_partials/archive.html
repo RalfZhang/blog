@@ -1,0 +1,46 @@
+{{/* A paginated list of posts: the archives (by year) or a tag. Takes dict "page" "pages" "isArchive". */}}
+{{ $page := .page }}
+{{ $isArchive := .isArchive }}
+{{ $paginator := $page.Paginate .pages }}
+<div id="primary">
+  <section id="archive" class="archive">
+    {{ if not $paginator.HasPrev }}
+      {{ if eq $page.Kind "term" }}
+        <div class="archive-title tag">
+          <h2 class="archive-name">{{ $page.Title }}</h2>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ $year := "" }}
+    {{ range $paginator.Pages }}
+      {{ if $isArchive }}
+        {{ $postYear := .Date.Format "2006" }}
+
+        {{ if ne $postYear $year }}
+          {{ $year = $postYear }}
+          <div class="collection-title">
+            <h2 class="archive-year">{{ $year }}</h2>
+          </div>
+        {{ end }}
+      {{ end }}
+
+      <div class="archive-post">
+        <span class="archive-post-time">
+          {{ if $isArchive }}
+            {{ partial "func/date.html" (dict "date" .Date "format" "date.short") }}
+          {{ else }}
+            {{ .Date.Format "2006-01-02" }}
+          {{ end }}
+        </span>
+        <span class="archive-post-title">
+          <a href="{{ .RelPermalink }}" class="archive-post-link">
+            {{ .Title }}
+          </a>
+        </span>
+      </div>
+    {{ end }}
+  </section>
+ </div>
+
+  {{ partial "pagination.html" $page }}

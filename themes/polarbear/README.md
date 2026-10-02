@@ -1,4 +1,4 @@
-# hexo-theme-polarbear
+# polarbear
 
 > A light theme bases on Even, designed by Giuem.
 
@@ -8,48 +8,47 @@
 
 ## 安装使用（Installation）
 
-> 本仓库中的这份主题已从 swig 迁移到 Nunjucks（`.njk`，使用 Hexo 5+ 内置的渲染器），样式改用 Dart Sass 模块（`@use`）。上游仓库仍是 swig 版本。
-> This copy has been migrated from swig to Nunjucks (`.njk`, rendered by the built-in renderer of Hexo 5+) and its styles to Dart Sass modules (`@use`). The upstream repository is still the swig version.
+> 本仓库中的这份主题已从 Hexo 移植到 [Hugo](https://gohugo.io/)：模板在 `layouts/`（Go 模板），样式是 Dart Sass 模块（`@use`），由 Hugo Pipes 编译。上游仓库仍是 Hexo（swig）版本。
+> This copy has been ported from Hexo to [Hugo](https://gohugo.io/): the templates are in `layouts/` (Go templates) and the styles are Dart Sass modules (`@use`) compiled by Hugo Pipes. The upstream repository is still the Hexo (swig) version.
+
+需要安装 Hugo 与 Dart Sass（Needs Hugo and Dart Sass）：
 
 ```
-$ npm install hexo-renderer-dartsass --save
+$ brew install hugo dart-sass
 ```
 
-修改（Change） polarbear/config.yml `theme: polarbear`
+修改（Change） hugo.yaml：
 
 ```
-# Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
 theme: polarbear
 
-# 在归档页面显示所有文章 （Show all articles on archive page.）
-# 需要安装(Need to install) hexo-generator-archive 插件支持
-archive_generator:
-    per_page: 0
-    yearly: false
-    monthly: false
-    daily: false
+params:
+  author: Your name
+  description: Your site description
+  since: 2017
 ```
 
+主题的全部选项及默认值见 `hugo.yaml`；站点配置里的 `params` 会覆盖它们。菜单写在站点配置的 `languages.<lang>.menus.main`，菜单名按 `menu.<identifier>` 在 `i18n/` 中翻译。
+All theme options and their defaults are in `hugo.yaml`; the site's `params` override them. Menus go in the site config (`languages.<lang>.menus.main`); menu names are translated through `menu.<identifier>` in `i18n/`.
+
 ## ReadmeFirst
-主题较为简陋粗糙，使用及修改时需要对 Hexo 有一定了解。
-The theme is relatively simple and rough, have a certain understanding of Hexo before you use and modify.
+主题较为简陋粗糙，使用及修改时需要对 Hugo 有一定了解。
+The theme is relatively simple and rough, have a certain understanding of Hugo before you use and modify.
 
 ## 侧边栏
 
 ```
-# widget function
-# false: disable
-# widget_custom: custom your widget
-#   title: your widget title
-#   content: Add your html code in here. Example: <p>testing...</p>
-widget:
-  Tags: true
-  Categories: false
-  Custom: false
+params:
+  # widget function
+  # false: disable
+  # widget_custom: custom your widget
+  #   title: your widget title
+  #   content: Add your html code in here. Example: <p>testing...</p>
+  widget:
+    tags: true
+    custom: false
 
-widget_custom:
+  widget_custom:
     title: Test
     content: <p>testing...</p>
 ```

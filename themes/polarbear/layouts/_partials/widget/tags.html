@@ -1,0 +1,14 @@
+{{/* The tags of this language's posts; none, no widget */}}
+{{ if site.Params.widget.tags }}
+  {{ with site.Taxonomies.tags }}
+    <section id="tags" class="widget-area widget_tags">
+        <h3 class="widget-title">{{ T "menu.tags" }}</h3>
+        {{/* Top 10 tags by post count; ByCount orders tags with the same count by name */}}
+        <ul class="tag-list" itemprop="keywords">
+          {{- range first 10 .ByCount -}}
+            <li class="tag-list-item"><a class="tag-list-link" href="{{ .Page.RelPermalink }}" rel="tag">{{ .Page.LinkTitle }}</a><span class="tag-list-count">{{ .Count }}</span></li>
+          {{- end -}}
+        </ul>
+    </section>
+  {{ end }}
+{{ end }}

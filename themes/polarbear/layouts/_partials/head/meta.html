@@ -1,0 +1,25 @@
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+{{/* Disable transformation */}}
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+{{/* Website description: a page's own, else its title; list pages use the site's */}}
+{{ if .Description }}
+  <meta name="description" content="{{ .Description }}"/>
+{{ else if .IsPage }}
+  <meta name="description" content="{{ .Title }}"/>
+{{ else if site.Params.description }}
+  <meta name="description" content="{{ site.Params.description }}"/>
+{{ end }}
+
+{{/* Website keywords */}}
+{{ if .Keywords }}
+  <meta name="keywords" content="{{ delimit .Keywords "," }}" />
+{{ else }}
+  {{ with .GetTerms "tags" }}
+    <meta name="keywords" content="{{ range . }}{{ .LinkTitle }},{{ end }}" />
+  {{ end }}
+{{ end }}

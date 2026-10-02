@@ -1,0 +1,6 @@
+{{/* Whether the page shows comments: posts do unless their front matter sets `comments: false` */}}
+{{ $enabled := and .IsPage (eq .Section "posts") }}
+{{ if isset .Params "comments" }}
+  {{ $enabled = and $enabled .Params.comments }}
+{{ end }}
+{{ return $enabled }}
