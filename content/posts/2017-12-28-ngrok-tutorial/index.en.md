@@ -1,6 +1,8 @@
 ---
 title: "Ngrok Setup Guide: Exposing a Local Machine to the Internet"
 date: 2017-12-28 00:59:51
+tags:
+- tool
 slug: ngrok-tutorial
 ---
 

@@ -7,18 +7,44 @@
         {{ with site.Menus.main }}
             <ul id="menu-top" class="nav-top-items">
                 {{ range . }}
+                    {{/* A page that this language doesn't have falls back to the default language's */}}
+                    {{ $page := .Page }}
+                    {{ if and (not $page) .PageRef }}
+                        {{ $page = hugo.Sites.Default.GetPage .PageRef }}
+                    {{ end }}
+                    {{ $url := .URL }}
+                    {{ with $page }}
+                        {{ $url = .RelPermalink }}
+                    {{ end }}
+                    {{/* params.output_format: another output of the page, e.g. the home page's feed */}}
+                    {{ with and $page .Params.output_format }}
+                        {{ with $page.OutputFormats.Get . }}
+                            {{ $url = .RelPermalink }}
+                        {{ end }}
+                    {{ end }}
                     <li class="menu-item">
-                        <a href="{{ .URL }}">
+                        <a href="{{ $url }}"
+                            {{- with $page }}{{ if ne .Language.Lang site.Language.Lang }} hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}"{{ end }}{{ end }}>
                             {{/* T returns "" when there is no translation */}}
                             {{ or (T (printf "menu.%s" .Identifier)) .Name }}
                         </a>
                     </li>
                 {{ end }}
-                {{/* Language switch, shown when this page has a translation */}}
-                {{ range $.Translations }}
-                    <li class="menu-item">
-                        <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>
-                    </li>
+                {{/* Language switch: this page in the other languages, or their home pages if it isn't translated */}}
+                {{ if $.IsTranslated }}
+                    {{ range $.Translations }}
+                        <li class="menu-item">
+                            <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>
+                        </li>
+                    {{ end }}
+                {{ else }}
+                    {{ range hugo.Sites }}
+                        {{ if ne .Language.Lang site.Language.Lang }}
+                            <li class="menu-item">
+                                <a href="{{ .Home.RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>
+                            </li>
+                        {{ end }}
+                    {{ end }}
                 {{ end }}
             </ul>
         {{ end }}

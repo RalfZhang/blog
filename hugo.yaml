@@ -16,34 +16,44 @@ capitalizeListTitles: false
 hasCJKLanguage: true
 
 # Languages
-## Chinese is the default language and lives at /; English lives under /en/.
+## Chinese is the default language and lives at / (/zh/ redirects there); English lives under /en/.
 ## A post's translation sits next to it in the same bundle: content/posts/<name>/index.md and index.en.md.
 ## The two share the bundle's images.
-defaultContentLanguage: zh-cn
+defaultContentLanguage: zh
 defaultContentLanguageInSubdir: false
-disableDefaultLanguageRedirect: true # no redirect page at /zh-cn/
 
 languages:
-  zh-cn:
+  zh:
     label: 中文
-    locale: zh-CN
+    locale: zh-Hans-CN # Hugo has month names for zh-Hans-CN but not for zh-CN
     weight: 1
-    menus:
-      main:
-        - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
-        - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 } # ralfz.com has no HTTPS yet
-        - { identifier: links, name: Links, pageRef: /links, weight: 3 }
-        - { identifier: rss, name: RSS, url: /atom.xml, weight: 4 }
+    params:
+      description: 前端, web, javascript, vue, vuejs
   en:
     label: English
     locale: en
     weight: 2
-    menus:
-      main:
-        - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
-        - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 }
-        - { identifier: links, name: Links, url: /links/, weight: 3 } # the links page is Chinese only
-        - { identifier: rss, name: RSS, url: /en/atom.xml, weight: 4 }
+    params:
+      description: frontend, web, javascript, vue, vuejs
+
+# Open Graph wants language_TERRITORY: og:locale zh_CN rather than the zh_Hans_CN the locale would give
+cascade:
+  - target:
+      sites:
+        matrix:
+          languages: [zh]
+    params:
+      locale: zh-CN
+
+# One menu for all languages. pageRef finds the page in the current language, else in the default language
+# (the links page is Chinese only). params.output_format links to another output of the page: the home page's
+# Atom feed, which is /atom.xml or /en/atom.xml.
+menus:
+  main:
+    - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
+    - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 } # ralfz.com has no HTTPS yet
+    - { identifier: links, name: Links, pageRef: /links, weight: 3 }
+    - { identifier: rss, name: RSS, pageRef: /, weight: 4, params: { output_format: atom } }
 
 # URL
 permalinks:
@@ -103,6 +113,7 @@ services:
 
 params:
   author: RalfZ
-  description: frontend, web, javascript, vue, vuejs
   since: 2017
   baidu_analytics: f9a64e560366e81efee97a73f25847bc
+  # hreflang="x-default", the version for readers of neither language, is the English one
+  hreflang_x_default: en

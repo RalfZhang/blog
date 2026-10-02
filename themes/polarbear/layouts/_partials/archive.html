@@ -28,7 +28,7 @@
       <div class="archive-post">
         <span class="archive-post-time">
           {{ if $isArchive }}
-            {{ partial "func/date.html" (dict "date" .Date "format" "date.short") }}
+            {{ .Date | time.Format "Jan 02" }}
           {{ else }}
             {{ .Date.Format "2006-01-02" }}
           {{ end }}

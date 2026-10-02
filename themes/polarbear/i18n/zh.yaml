@@ -25,9 +25,4 @@ copyright:
 
 comments:
   load: "加载 {{ .name }} 评论"
-
-# Hugo has no month names for the zh-CN locale, so the date formats spell the month out.
-# These are the formats Moment.js gave "MMM DD YYYY" and "MMM DD" on the Hexo site.
-date:
-  long: "{{ .Month }}月 {{ .Day }} {{ .Year }}"
-  short: "{{ .Month }}月 {{ .Day }}"
+  noscript: '请启用 JavaScript 以查看<a href="{{ .url }}">由 Disqus 提供的评论</a>。'

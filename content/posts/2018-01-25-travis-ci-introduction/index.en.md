@@ -1,6 +1,9 @@
 ---
 title: Getting Started with Travis CI
 date: 2018-01-25 14:34:00
+tags:
+- tool
+- CI
 slug: travis-ci-introduction
 ---
 

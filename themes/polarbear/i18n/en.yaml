@@ -25,8 +25,4 @@ copyright:
 
 comments:
   load: "Load {{ .name }} comments"
-
-# Post dates (layouts/_partials/func/date.html)
-date:
-  long: "{{ .MonthName }} {{ .Day }} {{ .Year }}"
-  short: "{{ .MonthName }} {{ .Day }}"
+  noscript: 'Please enable JavaScript to view the <a href="{{ .url }}">comments powered by Disqus.</a>'

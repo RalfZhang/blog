@@ -1,0 +1,13 @@
+{{/* The version of a translated page for readers of none of the site's languages (hreflang="x-default"): its
+     translation in the language params.hreflang_x_default names, by default the default content language.
+     false when the page isn't translated or has no version in that language. */}}
+{{ $lang := site.Params.hreflang_x_default | default hugo.Sites.Default.Language.Lang }}
+{{ $version := false }}
+{{ if .IsTranslated }}
+  {{ range .AllTranslations }}
+    {{ if eq .Language.Lang $lang }}
+      {{ $version = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ return $version }}

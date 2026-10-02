@@ -6,8 +6,7 @@
     </div>
       <div id="disqus_thread">
         <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          {{ T "comments.noscript" (dict "url" "//disqus.com/?ref_noscript") | safeHTML }}
         </noscript>
       </div>
     {{ end }}

@@ -32,7 +32,8 @@ jobs:
           curl -fsSL "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" | tar -xz -C "${RUNNER_TEMP}"
           echo "${RUNNER_TEMP}/dart-sass" >> "${GITHUB_PATH}"
 
-      - run: hugo build --gc --minify
+      # Any warning fails the build: an untranslated string would otherwise show the Chinese text on English pages
+      - run: hugo build --gc --minify --printI18nWarnings --panicOnWarning
 
       - uses: actions/upload-pages-artifact@v5
         with:

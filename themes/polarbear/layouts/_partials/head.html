@@ -14,10 +14,13 @@
 {{/* Canonical, good for google search engine */}}
 <link rel="canonical" href="{{ .Permalink }}"/>
 
-{{/* Translations of this page */}}
+{{/* Translations of this page, and the one for readers of none of these languages */}}
 {{ if .IsTranslated }}
   {{ range .AllTranslations }}
     <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}"/>
+  {{ end }}
+  {{ with partial "func/hreflang-x-default.html" . }}
+    <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}"/>
   {{ end }}
 {{ end }}
 

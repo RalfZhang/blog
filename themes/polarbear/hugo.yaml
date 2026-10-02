@@ -1,6 +1,8 @@
 # Theme defaults. The site's hugo.yaml overrides any of these under `params`.
-# Menus go in the site config (languages.<lang>.menus.main); menu names are translated through menu.<identifier>
-# in i18n/. Disqus and Google Analytics are read from Hugo's `services` config.
+# Menus go in the site config (menus.main). Menu names are translated through menu.<identifier> in i18n/. An
+# entry's pageRef that has no page in the current language links to the default language's page, and its
+# params.output_format links to that output of the page instead (output_format: atom on the home page gives the
+# language's feed). Disqus and Google Analytics are read from Hugo's `services` config.
 
 params:
   # ===========================================
@@ -12,6 +14,10 @@ params:
 
   # Custom your favicon.ico in `site/static`
   favicon: /favicon.ico
+
+  # The language whose version of a translated page is its hreflang="x-default" alternate (for readers of
+  # none of the site's languages). Empty: the default content language.
+  hreflang_x_default:
 
   # ===========================================
   # Widget Settings

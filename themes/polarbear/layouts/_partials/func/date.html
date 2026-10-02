@@ -1,3 +1,0 @@
-{{/* A date in a format of i18n/: dict "date" "format" ("date.long" or "date.short") */}}
-{{ $d := .date }}
-{{ return T .format (dict "Year" $d.Year "Month" (int $d.Month) "MonthName" ($d.Format "Jan") "Day" ($d.Format "02")) }}
