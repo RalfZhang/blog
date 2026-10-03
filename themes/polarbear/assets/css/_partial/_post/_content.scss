@@ -10,8 +10,7 @@
 
   @for $i from 1 through 6 {
     h#{$i} {
-      font-size: 1.3em;
-      font-weight: 400;
+      font-weight: 600;
       font-family: variables.$global-font-family;
       margin-top: 1.2em;
     }
