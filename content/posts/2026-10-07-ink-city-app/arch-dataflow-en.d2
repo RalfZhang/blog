@@ -1,0 +1,35 @@
+# InkCity data flow (English)
+# Export: d2 --pad=8 arch-dataflow-en.d2 arch-dataflow-en.svg
+classes: {
+  box: {style: {fill: "#ffffff"; stroke: "#9aa1ab"; font-color: "#2d2d2d"; bold: false; font-size: 15; border-radius: 6}}
+  ext: {style: {fill: "#f3f4f6"; stroke: "#a3a8b0"; font-color: "#4b5563"; bold: false; font-size: 15; border-radius: 6}}
+  fetch: {style: {fill: "#eaf1fb"; stroke: "#3b6fb6"; stroke-width: 2; font-color: "#1f3f6e"; bold: false; font-size: 15; border-radius: 6}}
+  render: {style: {fill: "#e8f4ec"; stroke: "#3f8f5a"; stroke-width: 2; font-color: "#1f4a2e"; bold: false; font-size: 15; border-radius: 6}}
+  future: {style: {fill: "#fbfbfb"; stroke: "#a3a8b0"; stroke-dash: 4; font-color: "#6b7280"; bold: false; font-size: 15; border-radius: 6}}
+  group: {style: {fill: "#f7f8fa"; stroke: "#cfd5de"; font-color: "#3a3f46"; bold: true; font-size: 15; border-radius: 10}}
+  futuregroup: {style: {fill: "#fbfbfb"; stroke: "#b9bdc4"; stroke-dash: 4; font-color: "#6b7280"; bold: true; font-size: 15; border-radius: 10}}
+  core: {style: {fill: "#f5f2ea"; stroke: "#2d2d2d"; stroke-width: 2; font-color: "#2d2d2d"; bold: true; font-size: 16; border-radius: 10}}
+  row: {label: ""; style: {fill: transparent; stroke: transparent}}
+  blank: {label: ""; width: 10; height: 10; style: {fill: transparent; stroke: transparent}}
+}
+
+grid-rows: 2
+grid-columns: 4
+horizontal-gap: 56
+vertical-gap: 32
+
+overpass: "Overpass API\nOpenStreetMap data" {class: ext}
+ci: "GitHub Actions\nprecache every 6 hours" {class: box}
+cdn: "data branch + CDN\njsDelivr and others" {class: box}
+desk: "Desktop app\nlocal cache → CDN → live fetch" {class: box}
+b1: {class: blank}
+b2: {class: blank}
+web: "Website (future)" {class: future}
+b3: {class: blank}
+
+overpass -> ci
+ci -> cdn
+cdn -> desk
+cdn -> web: {style.stroke-dash: 4}
+
+(** -> **)[*].style: {stroke: "#5f6670"; font-color: "#4b5563"; font-size: 13}

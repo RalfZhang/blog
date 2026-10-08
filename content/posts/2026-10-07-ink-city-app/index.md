@@ -19,7 +19,7 @@ slug: ink-city-app
 
 两秒内，它拿到当天的城市——玻利维亚的圣克鲁斯，把 3 万多条道路、水体和机场跑道画成一张屏幕大小的图，设成了壁纸：
 
-![2026 年 10 月 6 日的壁纸：玻利维亚圣克鲁斯](santa-cruz.jpg)
+![2026 年 10 月 6 日的壁纸：玻利维亚圣克鲁斯](santa-cruz.webp)
 
 *10 月 6 日的壁纸。圣克鲁斯的老城被一圈圈环路包着，左边是皮拉伊河。地图数据 © OpenStreetMap 贡献者。*
 
@@ -80,23 +80,13 @@ index = (days_since_2023-03-03 × 379) % N
 
 三个多月后，闭环没变，每一环都换了实现：
 
-```text
-GitHub Actions (every 6 hours)
-  ├─ schedule: pick a city for today+6, with cooldowns ─► osm-v2/city-list.json
-  ├─ osm-cli (TypeScript): one Overpass query per day ─► osm-v2/data/<date>.json(.gz)
-  └─ force-push to the `data` branch, served by jsDelivr & other CDNs
+![数据流：Overpass API → GitHub Actions 每 6 小时预缓存 → data 分支 + CDN → 桌面端（本地缓存 → CDN → 现场抓）；将来的网站读同一份 CDN 数据](arch-dataflow-zh.svg)
 
-Desktop app (Tauri 2)
-  ├─ Rust scheduler, every 60s: is the right wallpaper on screen?
-  ├─ pipeline: resolve today's city + map data
-  │    1. local day cache
-  │    2. CDN manifest (each host: .gz, then .json; GitHub raw last)
-  │    3. city-list.json + live Overpass fetch via the osm-cli sidecar
-  ├─ hidden WebView: core/render.ts draws on a <canvas> ─► PNG
-  └─ set wallpaper: macOS (JXA) / Windows (SPI) / Linux (per desktop)
-```
+渲染和数据处理都在 `src/core/`，是一份不依赖平台的 TypeScript，桌面端、CI 和将来的网站共用：
 
-渲染和数据处理都在 `src/core/`，是一份不依赖平台的 TypeScript，桌面端、CI 和将来的网站共用。和第一版相比：
+![同一份 src/core 跑在三个地方：CI 用 tsx 直接运行，桌面端的 Bun sidecar 和隐藏 WebView、将来的网站也都用它；osm/ 负责抓数据，render 负责画图](arch-core-zh.svg)
+
+和第一版相比：
 
 | | 5 月（v0.2） | 9 月（v0.12） |
 |---|---|---|
@@ -255,7 +245,7 @@ export function drawScene(ctx: CanvasRenderingContext2D, req: DrawReq): SceneCou
 
 氹仔有一角伸出了画面，被当成了穿过画面的大陆海岸线，岛上的陆地就被围进了海里。修法是先把所有能首尾相接成环的海岸线都认作岛，不管伸没伸出画面（拼接时也不看方向，顺便容忍标错方向的环），剩下的开放链才是大陆海岸线；最后用 `polygon-clipping` 合并所有的海，再减去所有的岛。还有个边界情况：画面里一条海岸线都没有，是全陆地还是全海？如果也一条路都没有，那就是海。
 
-![2026 年 10 月 1 日的壁纸：日内瓦](geneva.jpg)
+![2026 年 10 月 1 日的壁纸：日内瓦](geneva.webp)
 
 *10 月 1 日的日内瓦（深色主题）：上方是日内瓦湖，罗讷河从湖口向西流出，左上的平行斜线是机场跑道。地图数据 © OpenStreetMap 贡献者。*
 

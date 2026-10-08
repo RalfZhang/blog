@@ -1,0 +1,44 @@
+# InkCity 共享的 src/core（中文版）
+# 导出：d2 --layout=elk --elk-padding="[top=40,left=20,bottom=20,right=20]" --elk-nodeNodeBetweenLayers=50 --pad=8 arch-core-zh.d2 arch-core-zh.svg
+classes: {
+  box: {style: {fill: "#ffffff"; stroke: "#9aa1ab"; font-color: "#2d2d2d"; bold: false; font-size: 15; border-radius: 6}}
+  ext: {style: {fill: "#f3f4f6"; stroke: "#a3a8b0"; font-color: "#4b5563"; bold: false; font-size: 15; border-radius: 6}}
+  fetch: {style: {fill: "#eaf1fb"; stroke: "#3b6fb6"; stroke-width: 2; font-color: "#1f3f6e"; bold: false; font-size: 15; border-radius: 6}}
+  render: {style: {fill: "#e8f4ec"; stroke: "#3f8f5a"; stroke-width: 2; font-color: "#1f4a2e"; bold: false; font-size: 15; border-radius: 6}}
+  future: {style: {fill: "#fbfbfb"; stroke: "#a3a8b0"; stroke-dash: 4; font-color: "#6b7280"; bold: false; font-size: 15; border-radius: 6}}
+  group: {style: {fill: "#f7f8fa"; stroke: "#cfd5de"; font-color: "#3a3f46"; bold: true; font-size: 15; border-radius: 10}}
+  futuregroup: {style: {fill: "#fbfbfb"; stroke: "#b9bdc4"; stroke-dash: 4; font-color: "#6b7280"; bold: true; font-size: 15; border-radius: 10}}
+  core: {style: {fill: "#f5f2ea"; stroke: "#2d2d2d"; stroke-width: 2; font-color: "#2d2d2d"; bold: true; font-size: 16; border-radius: 10}}
+  row: {label: ""; style: {fill: transparent; stroke: transparent}}
+  blank: {label: ""; width: 10; height: 10; style: {fill: transparent; stroke: transparent}}
+}
+
+direction: down
+
+ci: "CI" {
+  class: group
+  box: "Node（tsx）\n直接运行源码" {class: box}
+}
+desk: "桌面端 · Tauri" {
+  class: group
+  sidecar: "Bun sidecar\n编译成可执行文件" {class: box}
+  webview: "隐藏 WebView\nVite 打包进前端" {class: box}
+}
+web: "网站（未来）" {
+  class: futuregroup
+  box: "浏览器\n直接 import" {class: box}
+}
+
+core: "src/core · 一份不依赖平台的 TypeScript" {
+  class: core
+  label.near: bottom-center
+  osm: "osm/\n抓 Overpass、拼海岸线、瘦身" {class: fetch; width: 405}
+  render: "render\ndrawScene() → Canvas" {class: render; width: 357}
+}
+
+ci.box -> core.osm
+desk.sidecar -> core.osm
+desk.webview -> core.render
+web.box -> core.render
+
+(** -> **)[*].style: {stroke: "#5f6670"}

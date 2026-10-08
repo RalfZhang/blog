@@ -19,7 +19,7 @@ Just after midnight on October 6, InkCity left these three lines in the log on m
 
 Within two seconds it had fetched the day's city, Santa Cruz de la Sierra in Bolivia, drawn its 30,000-plus roads, water and airport runways into a screen-sized image, and set it as the wallpaper:
 
-![Wallpaper for October 6, 2026: Santa Cruz de la Sierra, Bolivia](santa-cruz.jpg)
+![Wallpaper for October 6, 2026: Santa Cruz de la Sierra, Bolivia](santa-cruz.webp)
 
 *The wallpaper for October 6. Santa Cruz's old town sits at the center of concentric ring roads; on the left is the Piraí River. Map data © OpenStreetMap contributors.*
 
@@ -80,23 +80,13 @@ The first commit landed in the early hours of May 28, and v0.2.0 shipped that sa
 
 Three months later the loop is the same, but every step has been reimplemented:
 
-```text
-GitHub Actions (every 6 hours)
-  ├─ schedule: pick a city for today+6, with cooldowns ─► osm-v2/city-list.json
-  ├─ osm-cli (TypeScript): one Overpass query per day ─► osm-v2/data/<date>.json(.gz)
-  └─ force-push to the `data` branch, served by jsDelivr & other CDNs
+![Data flow: Overpass API → GitHub Actions precaching every 6 hours → data branch + CDN → desktop app (local cache → CDN → live fetch); a future website reads the same CDN data](arch-dataflow-en.svg)
 
-Desktop app (Tauri 2)
-  ├─ Rust scheduler, every 60s: is the right wallpaper on screen?
-  ├─ pipeline: resolve today's city + map data
-  │    1. local day cache
-  │    2. CDN manifest (each host: .gz, then .json; GitHub raw last)
-  │    3. city-list.json + live Overpass fetch via the osm-cli sidecar
-  ├─ hidden WebView: core/render.ts draws on a <canvas> ─► PNG
-  └─ set wallpaper: macOS (JXA) / Windows (SPI) / Linux (per desktop)
-```
+Rendering and data processing live in `src/core/`, platform-independent TypeScript shared by the desktop app, CI and a future website:
 
-Rendering and data processing live in `src/core/`: platform-independent TypeScript shared by the desktop app, CI and a future website. Compared with the first version:
+![One src/core in three places: CI runs it directly with tsx, the desktop app uses it through the Bun sidecar and the hidden WebView, and a future website will too; osm/ fetches the data, render draws it](arch-core-en.svg)
+
+Compared with the first version:
 
 | | May (v0.2) | September (v0.12) |
 |---|---|---|
@@ -255,7 +245,7 @@ The Taipa bug is a good illustration of how OSM represents the sea:
 
 Part of Taipa stuck out past the frame, so it was mistaken for mainland coastline crossing the frame, and the island's land ended up enclosed in the sea. The fix: first treat every coastline that closes into a ring as an island, whether or not it pokes outside the frame (stitching without regard to direction, which also tolerates rings drawn the wrong way round). Only the open chains left over count as mainland coast. Finally, `polygon-clipping` unions all the sea and subtracts all the islands. One more edge case: if no coastline crosses the frame at all, is it all land or all sea? If there isn't a single road either, it's sea.
 
-![Wallpaper for October 1, 2026: Geneva](geneva.jpg)
+![Wallpaper for October 1, 2026: Geneva](geneva.webp)
 
 *Geneva on October 1 (dark theme). Lake Geneva is at the top, with the Rhône flowing west out of it; the parallel diagonal lines at top left are the airport's runway. Map data © OpenStreetMap contributors.*
 

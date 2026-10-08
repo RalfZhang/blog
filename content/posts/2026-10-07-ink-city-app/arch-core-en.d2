@@ -1,0 +1,44 @@
+# InkCity's shared src/core (English)
+# Export: d2 --layout=elk --elk-padding="[top=40,left=20,bottom=20,right=20]" --elk-nodeNodeBetweenLayers=50 --pad=8 arch-core-en.d2 arch-core-en.svg
+classes: {
+  box: {style: {fill: "#ffffff"; stroke: "#9aa1ab"; font-color: "#2d2d2d"; bold: false; font-size: 15; border-radius: 6}}
+  ext: {style: {fill: "#f3f4f6"; stroke: "#a3a8b0"; font-color: "#4b5563"; bold: false; font-size: 15; border-radius: 6}}
+  fetch: {style: {fill: "#eaf1fb"; stroke: "#3b6fb6"; stroke-width: 2; font-color: "#1f3f6e"; bold: false; font-size: 15; border-radius: 6}}
+  render: {style: {fill: "#e8f4ec"; stroke: "#3f8f5a"; stroke-width: 2; font-color: "#1f4a2e"; bold: false; font-size: 15; border-radius: 6}}
+  future: {style: {fill: "#fbfbfb"; stroke: "#a3a8b0"; stroke-dash: 4; font-color: "#6b7280"; bold: false; font-size: 15; border-radius: 6}}
+  group: {style: {fill: "#f7f8fa"; stroke: "#cfd5de"; font-color: "#3a3f46"; bold: true; font-size: 15; border-radius: 10}}
+  futuregroup: {style: {fill: "#fbfbfb"; stroke: "#b9bdc4"; stroke-dash: 4; font-color: "#6b7280"; bold: true; font-size: 15; border-radius: 10}}
+  core: {style: {fill: "#f5f2ea"; stroke: "#2d2d2d"; stroke-width: 2; font-color: "#2d2d2d"; bold: true; font-size: 16; border-radius: 10}}
+  row: {label: ""; style: {fill: transparent; stroke: transparent}}
+  blank: {label: ""; width: 10; height: 10; style: {fill: transparent; stroke: transparent}}
+}
+
+direction: down
+
+ci: "CI" {
+  class: group
+  box: "Node (tsx)\nruns the source as is" {class: box}
+}
+desk: "Desktop app · Tauri" {
+  class: group
+  sidecar: "Bun sidecar\ncompiled to an executable" {class: box}
+  webview: "Hidden WebView\nbundled by Vite" {class: box}
+}
+web: "Website (future)" {
+  class: futuregroup
+  box: "Browser\nimports it directly" {class: box}
+}
+
+core: "src/core · one platform-independent TypeScript codebase" {
+  class: core
+  label.near: bottom-center
+  osm: "osm/\nfetch Overpass, assemble coastlines, slim" {class: fetch; width: 459}
+  render: "render\ndrawScene() → Canvas" {class: render; width: 382}
+}
+
+ci.box -> core.osm
+desk.sidecar -> core.osm
+desk.webview -> core.render
+web.box -> core.render
+
+(** -> **)[*].style: {stroke: "#5f6670"}
