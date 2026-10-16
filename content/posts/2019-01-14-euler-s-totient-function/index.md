@@ -4,6 +4,15 @@ date: 2019-01-14 23:47:47
 tags:
 - Algorithm
 - Math
+keywords:
+- 欧拉函数
+- Project Euler
+- Project Euler 69
+- 质数
+- 互质
+- 质数阶乘
+- 数论
+- 算法题
 slug: euler-s-totient-function
 ---
 今天从一个群里看到有人给了 Project Euler 上的[第 69 题](https://projecteuler.net/problem=69)，并且说自己的算法跑了 40 分钟才算出来，说得我很好奇这到底是一个什么样的题。我们来看题目：

@@ -3,6 +3,14 @@ title: Ngrok 内网穿透配置指南
 date: 2017-12-28 00:59:51
 tags:
 - tool
+keywords:
+- ngrok
+- 内网穿透
+- 自建 ngrok 服务器
+- ngrokd
+- 外网访问本地服务
+- VPS
+- CentOS
 slug: ngrok-tutorial
 ---
 

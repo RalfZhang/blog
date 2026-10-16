@@ -3,6 +3,15 @@ title: 浅谈 Vue 父子组件中的通讯——父向子的值传递和事件�
 date: 2017-04-18 00:51:11
 tags:
 - Vue
+keywords:
+- Vue.js
+- Vue 组件
+- 父子组件通讯
+- 父子组件通信
+- 父组件向子组件传值
+- props
+- $refs
+- Vue 教程
 slug: vue-parent-child-communication-1
 ---
 

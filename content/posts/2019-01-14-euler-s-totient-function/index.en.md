@@ -4,6 +4,15 @@ date: 2019-01-14 23:47:47
 tags:
 - Algorithm
 - Math
+keywords:
+- Euler's totient function
+- Project Euler
+- Project Euler 69
+- phi function
+- prime numbers
+- relatively prime
+- primorial
+- number theory
 slug: euler-s-totient-function
 ---
 Today someone in a group chat shared [Problem 69](https://projecteuler.net/problem=69) from Project Euler, saying their algorithm ran for 40 minutes before it found the answer. That made me curious about what kind of problem it was. Here it is:

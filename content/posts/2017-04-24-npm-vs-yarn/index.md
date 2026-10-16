@@ -5,6 +5,13 @@ tags:
 - npm
 - yarn
 - node
+keywords:
+- npm 命令
+- Yarn 命令
+- npm 和 Yarn 区别
+- 命令对照表
+- 包管理器
+- Node.js
 slug: npm-vs-yarn
 ---
 

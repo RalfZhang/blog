@@ -15,11 +15,19 @@
   <meta name="description" content="{{ site.Params.description }}"/>
 {{ end }}
 
-{{/* Website keywords */}}
-{{ if .Keywords }}
-  <meta name="keywords" content="{{ delimit .Keywords "," }}" />
-{{ else }}
-  {{ with .GetTerms "tags" }}
-    <meta name="keywords" content="{{ range . }}{{ .LinkTitle }},{{ end }}" />
-  {{ end }}
+{{/* Website keywords: a post's own and its tags, a tag page's tag; the site's where that leaves none, and on
+     list pages. Every page also gets the names the author goes by. */}}
+{{- $keywords := slice }}
+{{- if .IsPage }}
+  {{- range .Keywords }}{{ $keywords = $keywords | append . }}{{ end }}
+  {{- range .GetTerms "tags" }}{{ $keywords = $keywords | append .LinkTitle }}{{ end }}
+{{- else if eq .Kind "term" }}
+  {{- $keywords = $keywords | append .LinkTitle }}
+{{- end }}
+{{- if or (not .IsPage) (not $keywords) }}
+  {{- range site.Params.keywords }}{{ $keywords = $keywords | append . }}{{ end }}
+{{- end }}
+{{- range site.Params.author_names }}{{ $keywords = $keywords | append . }}{{ end }}
+{{- with $keywords | uniq }}
+  <meta name="keywords" content="{{ delimit . ", " }}" />
 {{ end }}

@@ -29,12 +29,16 @@ languages:
     weight: 1
     params:
       description: 前端, web, javascript, vue, vuejs
+      # Keywords of the pages that have none of their own: the home page, the archives, tag pages
+      keywords: [技术博客, 前端, 前端开发, Web 开发, JavaScript, TypeScript, Vue.js, Node.js, 开发工具, 持续集成, 算法, Rust, Tauri, 桌面应用]
   en:
     label: English
     locale: en
     weight: 2
     params:
       description: frontend, web, javascript, vue, vuejs
+      # The English posts have no Vue or Node.js posts among them
+      keywords: [tech blog, software development, frontend, web development, JavaScript, TypeScript, developer tools, continuous integration, algorithms, Rust, Tauri, desktop apps, OpenStreetMap]
 
 # Open Graph wants language_TERRITORY: og:locale zh_CN rather than the zh_Hans_CN the locale would give
 cascade:
@@ -112,6 +116,8 @@ services:
 
 params:
   author: RalfZ
+  # The names the author goes by, in the keywords of every page
+  author_names: [Ralf, RalfZ, RalfZhang]
   since: 2017
   baidu_analytics: f9a64e560366e81efee97a73f25847bc
   # hreflang="x-default", the version for readers of neither language, is the English one

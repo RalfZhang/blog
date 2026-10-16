@@ -4,6 +4,15 @@ date: 2018-01-25 14:34:00
 tags:
 - tool
 - CI
+keywords:
+- Travis CI
+- continuous integration
+- automated deployment
+- GitHub
+- .travis.yml
+- scp
+- SSH keys
+- encrypt-file
 slug: travis-ci-introduction
 ---
 

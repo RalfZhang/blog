@@ -6,6 +6,19 @@ tags:
 - Rust
 - OpenStreetMap
 - AI
+keywords:
+- InkCity
+- 桌面壁纸
+- 城市地图壁纸
+- 跨平台桌面应用
+- macOS
+- Windows
+- Linux
+- Overpass API
+- TypeScript
+- release-please
+- Claude Code
+- 开发复盘
 slug: ink-city-app
 ---
 

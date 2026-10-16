@@ -3,6 +3,14 @@ title: "Ngrok Setup Guide: Exposing a Local Machine to the Internet"
 date: 2017-12-28 00:59:51
 tags:
 - tool
+keywords:
+- ngrok
+- self-hosted ngrok
+- ngrokd
+- expose localhost
+- tunneling
+- VPS
+- CentOS
 slug: ngrok-tutorial
 ---
 

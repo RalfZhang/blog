@@ -7,6 +7,19 @@ tags:
 - ESLint
 - Vuex
 - Vue-router
+keywords:
+- 微豆
+- Vdo
+- Vue 2.0
+- Vue.js
+- 豆瓣
+- 豆瓣 Web App
+- Material Design
+- vue-cli
+- axios
+- Nginx
+- 单页应用
+- Vue 教程
 slug: vdo
 ---
 

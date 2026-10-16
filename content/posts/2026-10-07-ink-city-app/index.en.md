@@ -6,6 +6,19 @@ tags:
 - Rust
 - OpenStreetMap
 - AI
+keywords:
+- InkCity
+- desktop wallpaper
+- city map wallpaper
+- cross-platform desktop app
+- macOS
+- Windows
+- Linux
+- Overpass API
+- TypeScript
+- release-please
+- Claude Code
+- retrospective
 slug: ink-city-app
 ---
 
