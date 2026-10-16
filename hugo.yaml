@@ -45,15 +45,14 @@ cascade:
     params:
       locale: zh-CN
 
-# One menu for all languages. pageRef finds the page in the current language, else in the default language
-# (the links page is Chinese only). params.output_format links to another output of the page: the home page's
-# Atom feed, which is /atom.xml or /en/atom.xml.
+# One menu for all languages. pageRef finds the page in the current language, else in the default language.
+# params.output_format links to another output of the page: the home page's Atom feed, which is /atom.xml or
+# /en/atom.xml.
 menus:
   main:
     - { identifier: archives, name: Archives, pageRef: /archives, weight: 1 }
     - { identifier: about, name: About, url: "http://ralfz.com/", weight: 2 } # ralfz.com has no HTTPS yet
-    - { identifier: links, name: Links, pageRef: /links, weight: 3 }
-    - { identifier: rss, name: RSS, pageRef: /, weight: 4, params: { output_format: atom } }
+    - { identifier: rss, name: RSS, pageRef: /, weight: 3, params: { output_format: atom } }
 
 # URL
 permalinks:
