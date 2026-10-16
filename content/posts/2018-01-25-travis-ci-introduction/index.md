@@ -1,5 +1,6 @@
 ---
 title: Travis CI 简单上手
+description: 用 Travis CI 自动构建并部署 GitHub 项目：编写 .travis.yml，用 encrypt-file 加密 SSH 私钥，构建完成后通过 scp 自动发布到服务器。
 date: 2018-01-25 14:34:00
 tags:
 - tool

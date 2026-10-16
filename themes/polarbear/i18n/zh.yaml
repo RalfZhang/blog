@@ -26,3 +26,8 @@ copyright:
 comments:
   load: "加载 {{ .name }} 评论"
   noscript: '请启用 JavaScript 以查看<a href="{{ .url }}">由 Disqus 提供的评论</a>。'
+
+tag:
+  title: "{{ .tag }} 相关文章"
+  meta_description: "{{ .tag }} 相关文章：{{ .titles }}"
+  separator: "；"

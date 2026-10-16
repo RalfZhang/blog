@@ -1,5 +1,6 @@
 ---
 title: npm、Yarn 命令对照表
+description: npm 与 Yarn 命令对照表：安装、添加、删除、升级依赖等常用命令的两种写法，两者的差异，以及各自独有的命令。
 date: 2017-04-24 15:06:54
 tags:
 - npm

@@ -27,7 +27,7 @@ feed readers don't show the old posts again. */ -}}
     <updated>{{ .Lastmod.UTC.Format $time }}</updated>
     <content type="html">{{ .Content | transform.XMLEscape | safeHTML }}</content>
     {{- /* plain text; HTML entities such as &rsquo; don't exist in XML */}}
-    <summary>{{ .Summary | replaceRE `</(h[1-6]|p|li|blockquote|pre)>` " " | plainify | htmlUnescape | strings.TrimSpace | truncate 140 }}</summary>
+    <summary>{{ partial "func/summary-text.html" . }}</summary>
     {{ range .GetTerms "tags" }}
     <category term="{{ .LinkTitle }}" scheme="{{ .Permalink }}"/>
     {{ end }}

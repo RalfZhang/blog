@@ -1,4 +1,4 @@
-{{ define "title" }}{{ site.Title }} - {{ site.Params.description }}{{ end }}
+{{ define "title" }}{{ site.Title }}{{ with site.Params.tagline }} - {{ . }}{{ end }}{{ end }}
 
 {{ define "main" }}
     <div id="primary" class="home">

@@ -26,3 +26,8 @@ copyright:
 comments:
   load: "Load {{ .name }} comments"
   noscript: 'Please enable JavaScript to view the <a href="{{ .url }}">comments powered by Disqus.</a>'
+
+tag:
+  title: "Posts tagged {{ .tag }}"
+  meta_description: "Posts tagged {{ .tag }}: {{ .titles }}"
+  separator: "; "

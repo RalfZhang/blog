@@ -1,5 +1,6 @@
 ---
 title: Starting from a Problem on Euler's Totient Function
+description: "Project Euler Problem 69: which n ≤ 1,000,000 maximizes n/φ(n)? Intuition says multiply the smallest primes (510510), and Euler's product formula proves it."
 date: 2019-01-14 23:47:47
 tags:
 - Algorithm

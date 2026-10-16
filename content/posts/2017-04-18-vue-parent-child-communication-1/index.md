@@ -1,5 +1,6 @@
 ---
 title: 浅谈 Vue 父子组件中的通讯——父向子的值传递和事件触发 1/2
+description: Vue 父子组件通讯（上）：父组件如何通过 prop 向子组件传值，又如何触发子组件的方法——对比 watch prop 的 hack 写法与推荐的 ref / $refs 写法，附 CodePen 示例。
 date: 2017-04-18 00:51:11
 tags:
 - Vue

@@ -6,13 +6,20 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-{{/* Website description: a page's own, else its title; list pages use the site's */}}
-{{ if .Description }}
-  <meta name="description" content="{{ .Description }}"/>
-{{ else if .IsPage }}
-  <meta name="description" content="{{ .Title }}"/>
-{{ else if site.Params.description }}
-  <meta name="description" content="{{ site.Params.description }}"/>
+{{/* Website description: a page's own (front matter); else a post's summary, or the posts of a tag page; else the
+     site's */}}
+{{- $description := .Description }}
+{{- if not $description }}
+  {{- if .IsPage }}
+    {{- $description = partial "func/summary-text.html" . }}
+  {{- else if eq .Kind "term" }}
+    {{- $titles := slice }}
+    {{- range .Pages }}{{ $titles = $titles | append .LinkTitle }}{{ end }}
+    {{- $description = T "tag.meta_description" (dict "tag" .LinkTitle "titles" (delimit $titles (T "tag.separator"))) | truncate 160 }}
+  {{- end }}
+{{- end }}
+{{- with $description | default site.Params.description }}
+  <meta name="description" content="{{ . }}"/>
 {{ end }}
 
 {{/* Website keywords: a post's own and its tags, a tag page's tag; the site's where that leaves none, and on

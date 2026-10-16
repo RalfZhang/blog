@@ -1,5 +1,6 @@
 ---
 title: "InkCity Retrospective: A Wallpaper That Draws a New City Every Day, and the Pitfalls Behind It"
+description: InkCity turns a different city's OpenStreetMap streets into your wallpaper every day. A retrospective on building it with Tauri and Rust, pitfalls included.
 date: 2026-10-07T16:16:13-07:00
 tags:
 - Tauri

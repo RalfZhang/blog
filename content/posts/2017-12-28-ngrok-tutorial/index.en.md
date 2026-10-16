@@ -1,5 +1,6 @@
 ---
 title: "Ngrok Setup Guide: Exposing a Local Machine to the Internet"
+description: "Self-host ngrok on a CentOS VPS to reach your local dev server from anywhere: generate certificates, build ngrokd and the client, and use your own domain."
 date: 2017-12-28 00:59:51
 tags:
 - tool

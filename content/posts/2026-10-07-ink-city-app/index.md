@@ -1,5 +1,6 @@
 ---
 title: "InkCity 开发复盘：一张每天换一座城市的壁纸，和背后的那些坑"
+description: InkCity 每天把一座城市的 OpenStreetMap 路网画成桌面壁纸。本文复盘用 Tauri 和 Rust 开发这款跨平台应用的过程：选城、取数据、渲染、定时换壁纸和发版本时踩过的坑。
 date: 2026-10-07T16:16:13-07:00
 tags:
 - Tauri

@@ -1,0 +1,4 @@
+{{/* A page's summary as plain text, for the feed or a meta description: the end of a block becomes a space, and
+     HTML entities such as &rsquo; become the characters they stand for */}}
+{{ $text := .Summary | replaceRE `</(h[1-6]|p|li|blockquote|pre)>` " " | plainify | htmlUnescape | strings.TrimSpace | truncate 140 }}
+{{ return $text }}

@@ -1,5 +1,6 @@
 ---
 title: Getting Started with Travis CI
+description: "Build and deploy a GitHub project with Travis CI: write .travis.yml, encrypt the SSH private key with encrypt-file, and copy the build to your server over scp."
 date: 2018-01-25 14:34:00
 tags:
 - tool

@@ -1,5 +1,6 @@
 ---
 title: Ngrok 内网穿透配置指南
+description: 家里开发机上的服务怎么从外网访问？本文在 CentOS VPS 上自建 ngrok：生成证书、编译 ngrokd 服务端和客户端，再用自己的域名实现内网穿透。
 date: 2017-12-28 00:59:51
 tags:
 - tool

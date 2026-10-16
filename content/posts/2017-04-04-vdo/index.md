@@ -1,5 +1,6 @@
 ---
 title: 微豆 Vdo - Vue 2.0 实现豆瓣 Web App 教程
+description: 微豆 Vdo 是用 Vue 2.0 与 Material Design 重构的豆瓣 Web App。本文从 vue-cli、ESLint、vue-router、axios 到 Vuex 和 Nginx 部署，一步步讲解它的实现。
 date: 2017-04-04 10:25:06
 tags: 
 - Vue

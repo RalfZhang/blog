@@ -20,13 +20,10 @@
 
     {{ if $isHome }}
         <div class="post-excerpt post-content">
-            {{/* The front matter description, else the part above a <!--more--> divider */}}
-            {{ with $post.Description }}
-              {{ . }}
-            {{ else }}
-              {{ if strings.Contains $post.RawContent "<!--more-->" }}
-                {{ $post.Summary }}
-              {{ end }}
+            {{/* The part above a <!--more--> divider. The front matter description is for search engines and link
+                 previews only. */}}
+            {{ if strings.Contains $post.RawContent "<!--more-->" }}
+              {{ $post.Summary }}
             {{ end }}
         </div>
     {{ else }}

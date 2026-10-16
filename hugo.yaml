@@ -28,7 +28,10 @@ languages:
     locale: zh-Hans-CN # Hugo has month names for zh-Hans-CN but not for zh-CN
     weight: 1
     params:
-      description: 前端, web, javascript, vue, vuejs
+      # In the home page's title, after the site title
+      tagline: RalfZhang 的前端开发与技术笔记
+      # The meta description of the pages that have none of their own
+      description: Ralf（RalfZ / RalfZhang）的技术博客，记录前端开发、Vue.js 与 JavaScript 实践、开发工具与持续集成教程、算法笔记，以及用 Tauri 和 Rust 开发桌面应用的经验。
       # Keywords of the pages that have none of their own: the home page, the archives, tag pages
       keywords: [技术博客, 前端, 前端开发, Web 开发, JavaScript, TypeScript, Vue.js, Node.js, 开发工具, 持续集成, 算法, Rust, Tauri, 桌面应用]
   en:
@@ -36,7 +39,8 @@ languages:
     locale: en
     weight: 2
     params:
-      description: frontend, web, javascript, vue, vuejs
+      tagline: Web Development and Tech Notes by RalfZhang
+      description: "The tech blog of Ralf (RalfZ / RalfZhang): web development, developer tools and CI guides, algorithm notes, and building desktop apps with Tauri and Rust."
       # The English posts have no Vue or Node.js posts among them
       keywords: [tech blog, software development, frontend, web development, JavaScript, TypeScript, developer tools, continuous integration, algorithms, Rust, Tauri, desktop apps, OpenStreetMap]
 
